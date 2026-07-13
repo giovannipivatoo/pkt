@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url'
 
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { revalidatePath } from 'next/cache'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
 
@@ -19,6 +20,32 @@ import { Site } from './globals/Site'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+// Revalidate all pages when any CMS content changes. revalidatePath throws
+// outside a request scope (e.g. the seed script), so swallow that case.
+// ponytail: revalidates the whole site on every edit; scope per-collection if it gets slow.
+const revalidateSite = () => {
+  try {
+    revalidatePath('/', 'layout')
+  } catch {}
+}
+
+const collections = [Categories, Machines, Posts, Media, Users].map((c) => ({
+  ...c,
+  hooks: {
+    ...c.hooks,
+    afterChange: [...(c.hooks?.afterChange ?? []), revalidateSite],
+    afterDelete: [...(c.hooks?.afterDelete ?? []), revalidateSite],
+  },
+}))
+
+const globals = [Home, About, Blog, Site].map((g) => ({
+  ...g,
+  hooks: {
+    ...g.hooks,
+    afterChange: [...(g.hooks?.afterChange ?? []), revalidateSite],
+  },
+}))
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -26,8 +53,8 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Categories, Machines, Posts, Media, Users],
-  globals: [Home, About, Blog, Site],
+  collections,
+  globals,
   editor: lexicalEditor(),
   localization: {
     locales: ['it', 'en'],
