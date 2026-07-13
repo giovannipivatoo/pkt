@@ -1,0 +1,40 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Low-fi design tokens (specs/00-site.md) — placeholder values until brand assets arrive */
+  --color-accent: #e2001a; /* red logo-dot accent */
+  --color-ink: #141414; /* near-black text */
+  --color-mist: #f2f2f0; /* light-gray section background */
+}
+
+body {
+  color: var(--color-ink);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Rich-text body (blog posts) */
+.richtext p {
+  margin-bottom: 1.25rem;
+  line-height: 1.75;
+}
+
+.richtext h2,
+.richtext h3 {
+  font-weight: 700;
+  margin: 2rem 0 0.75rem;
+}
+
+.richtext ul,
+.richtext ol {
+  margin: 0 0 1.25rem 1.25rem;
+  list-style: disc;
+}
+
+/* Hide scrollbars in carousels while keeping them scrollable */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
