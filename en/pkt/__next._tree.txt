@@ -1,0 +1,8 @@
+:HL["/pkt/_next/static/chunks/2km_9u-tetb9l.css","style"]
+:HL["/pkt/media/hero-about.png","image"]
+:HL["/pkt/media/about-twocol.png","image"]
+:HL["/pkt/media/gallery-1.png","image"]
+:HL["/pkt/media/gallery-2.png","image"]
+:HL["/pkt/media/gallery-3.png","image"]
+:HL["/pkt/media/gallery-4.png","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":0,"slots":{"children":{"name":"(site)","param":null,"prefetchHints":0,"slots":{"children":{"name":"locale","param":{"type":"d","key":"en","siblings":null},"prefetchHints":16,"slots":{"children":{"name":"pkt","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}}}},"staleTime":300,"buildId":"Xrp9S--2BnmfmT5zio7KN"}

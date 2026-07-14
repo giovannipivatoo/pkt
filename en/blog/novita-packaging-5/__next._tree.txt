@@ -1,0 +1,5 @@
+:HL["/pkt/_next/static/chunks/2km_9u-tetb9l.css","style"]
+:HL["/pkt/media/post-cover-2.png","image"]
+:HL["/pkt/media/post-cover-1.png","image"]
+:HL["/pkt/media/post-cover-3.png","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":0,"slots":{"children":{"name":"(site)","param":null,"prefetchHints":0,"slots":{"children":{"name":"locale","param":{"type":"d","key":"en","siblings":null},"prefetchHints":16,"slots":{"children":{"name":"blog","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"novita-packaging-5","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}}}}}},"staleTime":300,"buildId":"Xrp9S--2BnmfmT5zio7KN"}
