@@ -72,6 +72,10 @@ export function Header({ locale, strings, categories }: Props) {
           <Link href={`${lp(locale, '/')}#contatti`} className={linkClass(false)}>
             {strings.navContacts}
           </Link>
+          {/* Brand name — same in every locale, so not a CMS string. */}
+          <Link href={lp(locale, '/linkedin')} className={linkClass(isActive('/linkedin'))}>
+            LinkedIn
+          </Link>
         </nav>
         <div className="flex justify-end">
           <Logo href={lp(locale, '/')} part="dots" />

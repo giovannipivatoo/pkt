@@ -2,7 +2,7 @@ import config from '@payload-config'
 import { getPayload } from 'payload'
 import { cache } from 'react'
 
-import type { Category, Machine, Media, Post } from '../payload-types'
+import type { Category, LinkedinPost, Machine, Media, Post } from '../payload-types'
 import type { Locale } from './locale'
 
 const client = cache(() => getPayload({ config }))
@@ -91,6 +91,16 @@ export const getPosts = cache(async (locale: Locale): Promise<Post[]> => {
     locale,
     sort: '-date',
     depth: 1,
+    limit: 500,
+  })
+  return res.docs
+})
+
+export const getLinkedinPosts = cache(async (): Promise<LinkedinPost[]> => {
+  const res = await (await client()).find({
+    collection: 'linkedin-posts',
+    sort: '-date',
+    depth: 0,
     limit: 500,
   })
   return res.docs

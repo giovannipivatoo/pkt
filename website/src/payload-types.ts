@@ -70,6 +70,7 @@ export interface Config {
     categories: Category;
     machines: Machine;
     posts: Post;
+    'linkedin-posts': LinkedinPost;
     media: Media;
     users: User;
     'payload-kv': PayloadKv;
@@ -82,6 +83,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     machines: MachinesSelect<false> | MachinesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
+    'linkedin-posts': LinkedinPostsSelect<false> | LinkedinPostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -254,6 +256,31 @@ export interface Post {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "linkedin-posts".
+ */
+export interface LinkedinPost {
+  id: number;
+  /**
+   * Internal label for the admin list
+   */
+  title: string;
+  /**
+   * Paste the LinkedIn "Embed this post" code, the post URL, or the URN — it is normalized to the embed src automatically.
+   */
+  embedUrl: string;
+  /**
+   * Sort order — newest first
+   */
+  date: string;
+  /**
+   * Embed height in px (LinkedIn posts vary; bump if the post is clipped)
+   */
+  height?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -313,6 +340,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'posts';
         value: number | Post;
+      } | null)
+    | ({
+        relationTo: 'linkedin-posts';
+        value: number | LinkedinPost;
       } | null)
     | ({
         relationTo: 'media';
@@ -411,6 +442,18 @@ export interface PostsSelect<T extends boolean = true> {
   date?: T;
   cover?: T;
   gallery?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "linkedin-posts_select".
+ */
+export interface LinkedinPostsSelect<T extends boolean = true> {
+  title?: T;
+  embedUrl?: T;
+  date?: T;
+  height?: T;
   updatedAt?: T;
   createdAt?: T;
 }

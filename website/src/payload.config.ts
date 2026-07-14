@@ -8,6 +8,7 @@ import { buildConfig } from 'payload'
 import sharp from 'sharp'
 
 import { Categories } from './collections/Categories'
+import { LinkedinPosts } from './collections/LinkedinPosts'
 import { Machines } from './collections/Machines'
 import { Media } from './collections/Media'
 import { Posts } from './collections/Posts'
@@ -29,7 +30,7 @@ const revalidateSite = () => {
   } catch {}
 }
 
-const collections = [Categories, Machines, Posts, Media, Users].map((c) => ({
+const collections = [Categories, Machines, Posts, LinkedinPosts, Media, Users].map((c) => ({
   ...c,
   hooks: {
     ...c.hooks,

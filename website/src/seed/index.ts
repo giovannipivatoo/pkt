@@ -269,6 +269,26 @@ const run = async () => {
   }
   payload.logger.info('Posts ready')
 
+  // ---- LinkedIn posts -----------------------------------------------------
+  for (const [i, urn] of ['urn:li:share:7480866676188606464'].entries()) {
+    const embedUrl = `https://www.linkedin.com/embed/feed/update/${urn}`
+    const existing = await payload.find({
+      collection: 'linkedin-posts',
+      where: { embedUrl: { equals: embedUrl } },
+      limit: 1,
+    })
+    const data = {
+      title: `LinkedIn post ${i + 1}`,
+      embedUrl,
+      date: new Date(Date.UTC(2026, 6, 13) - i * 24 * 60 * 60 * 1000).toISOString(),
+      height: 855,
+    }
+    existing.docs[0]
+      ? await payload.update({ collection: 'linkedin-posts', id: existing.docs[0].id, data, context })
+      : await payload.create({ collection: 'linkedin-posts', data, context })
+  }
+  payload.logger.info('LinkedIn posts ready')
+
   // ---- Globals ------------------------------------------------------------
   const video = 'https://www.youtube.com/embed/dQw4w9WgXcQ'
 
