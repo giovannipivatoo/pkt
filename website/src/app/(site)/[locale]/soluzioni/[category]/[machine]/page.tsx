@@ -13,7 +13,8 @@ import {
 import { isLocale, LOCALES } from '../../../../../../lib/locale'
 import { inquiryStrings } from '../../../../../../lib/ui'
 
-export const dynamicParams = false
+// New CMS machines render on-demand (static after first hit); edits recompile via revalidate hooks.
+export const dynamicParams = true
 
 export async function generateStaticParams() {
   const machines = await getAllMachines('it')

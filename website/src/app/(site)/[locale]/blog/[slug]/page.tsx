@@ -8,7 +8,8 @@ import { getPostBySlug, getPosts, getSiteGlobal, img, imgs } from '../../../../.
 import { isLocale, LOCALES } from '../../../../../lib/locale'
 import { postToCard } from '../../../../../lib/ui'
 
-export const dynamicParams = false
+// New CMS posts render on-demand (static after first hit); edits recompile via revalidate hooks.
+export const dynamicParams = true
 
 export async function generateStaticParams() {
   const posts = await getPosts('it')

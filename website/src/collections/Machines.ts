@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import { revalidateAfterChange, revalidateAfterDelete } from '../lib/revalidate'
+import { slugField } from '../lib/slugField'
 
 export const Machines: CollectionConfig = {
   slug: 'machines',
@@ -25,16 +26,7 @@ export const Machines: CollectionConfig = {
         description: 'E.g. "FPK 44"',
       },
     },
-    {
-      name: 'slug',
-      type: 'text',
-      required: true,
-      unique: true,
-      index: true,
-      admin: {
-        description: 'URL segment, e.g. "fpk-44"',
-      },
-    },
+    slugField({ description: 'URL segment, e.g. "fpk-44"' }),
     {
       name: 'category',
       type: 'relationship',

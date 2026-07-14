@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { LogosBand } from '../../../../../components/LogosBand'
+import { MachineList } from '../../../../../components/MachineList'
 import {
   getCategories,
   getCategoryBySlug,
@@ -13,7 +13,8 @@ import {
 } from '../../../../../lib/data'
 import { isLocale, LOCALES, lp } from '../../../../../lib/locale'
 
-export const dynamicParams = false
+// New CMS categories render on-demand (static after first hit); edits recompile via revalidate hooks.
+export const dynamicParams = true
 
 export async function generateStaticParams() {
   const categories = await getCategories('it')
@@ -62,38 +63,18 @@ export default async function CategoryPage({ params }: Props) {
         </div>
       </section>
 
-      {/* 2. Machine list — alternating rows starting text-left; whole row links */}
+      {/* 2. Machine list — alternating rows, 3 at a time with a "view all" button */}
       <section className="mx-auto max-w-6xl px-4 py-16">
-        <div className="space-y-16">
-          {machines.map((machine, i) => {
-            const image = imgs(machine.gallery)[0] ?? null
-            const flipped = i % 2 === 1
-            return (
-              <Link
-                key={machine.slug}
-                href={lp(locale, `/soluzioni/${slug}/${machine.slug}`)}
-                className="group grid items-center gap-8 md:grid-cols-2"
-              >
-                <div className={flipped ? 'md:order-2' : ''}>
-                  <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
-                    {machine.name}
-                  </h2>
-                  <p className="mt-4 text-ink/70">{machine.shortDescription}</p>
-                </div>
-                {image && (
-                  <div className={flipped ? 'md:order-1' : ''}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={image.url}
-                      alt={image.alt}
-                      className="aspect-[4/3] w-full rounded-xl object-cover transition-transform group-hover:scale-[1.02]"
-                    />
-                  </div>
-                )}
-              </Link>
-            )
-          })}
-        </div>
+        <MachineList
+          viewAllLabel={site.uiStrings.viewAll}
+          machines={machines.map((machine) => ({
+            slug: machine.slug,
+            name: machine.name,
+            shortDescription: machine.shortDescription,
+            href: lp(locale, `/soluzioni/${slug}/${machine.slug}`),
+            image: imgs(machine.gallery)[0] ?? null,
+          }))}
+        />
       </section>
 
       {/* 3. Logos band */}

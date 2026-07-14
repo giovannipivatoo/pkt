@@ -57,6 +57,7 @@ export const Site: GlobalConfig = {
         // Blog card / sections
         { name: 'readMore', type: 'text', required: true, localized: true },
         { name: 'viewNow', type: 'text', required: true, localized: true },
+        { name: 'viewAll', type: 'text', required: true, localized: true },
         { name: 'relatedArticles', type: 'text', required: true, localized: true },
         { name: 'searchPlaceholder', type: 'text', required: true, localized: true },
         // Product page

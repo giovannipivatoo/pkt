@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import { revalidateAfterChange, revalidateAfterDelete } from '../lib/revalidate'
+import { slugField } from '../lib/slugField'
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -23,13 +24,7 @@ export const Posts: CollectionConfig = {
       required: true,
       localized: true,
     },
-    {
-      name: 'slug',
-      type: 'text',
-      required: true,
-      unique: true,
-      index: true,
-    },
+    slugField(),
     {
       name: 'excerpt',
       type: 'textarea',

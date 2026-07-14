@@ -34,9 +34,9 @@ export function Header({ locale, strings, categories }: Props) {
 
   return (
     <header className="sticky top-0 z-40 border-b border-ink/10 bg-white">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-4">
-        <Logo href={lp(locale, '/')} />
-        <nav className="flex items-center gap-4 sm:gap-7">
+      <div className="mx-auto grid max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-6 px-4 py-4">
+        <Logo href={lp(locale, '/')} part="word" />
+        <nav className="flex items-center justify-center gap-4 sm:gap-7">
           <Link href={lp(locale, '/')} className={linkClass(isActive('/'))}>
             {strings.navHome}
           </Link>
@@ -73,6 +73,9 @@ export function Header({ locale, strings, categories }: Props) {
             {strings.navContacts}
           </Link>
         </nav>
+        <div className="flex justify-end">
+          <Logo href={lp(locale, '/')} part="dots" />
+        </div>
       </div>
     </header>
   )

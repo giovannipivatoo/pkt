@@ -61,15 +61,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       {/* 2. Solutions carousel — cards generated from the category collection */}
       <section id="soluzioni" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-20">
+        <SectionHeading eyebrow={home.solutions.eyebrow} heading={home.solutions.heading} />
+        <div className="mt-10 px-2 sm:px-6">
         <Carousel
-          arrows="header"
-          header={
-            <SectionHeading
-              align="left"
-              eyebrow={home.solutions.eyebrow}
-              heading={home.solutions.heading}
-            />
-          }
+          arrows="sides"
           itemClassName="w-[85%] sm:w-[46%] md:w-[calc((100%-3rem)/3)]"
         >
           {categories.map((category) => {
@@ -97,6 +92,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             )
           })}
         </Carousel>
+        </div>
       </section>
 
       {/* 3. About video */}

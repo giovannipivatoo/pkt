@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import { revalidateAfterChange, revalidateAfterDelete } from '../lib/revalidate'
+import { slugField } from '../lib/slugField'
 
 export const Categories: CollectionConfig = {
   slug: 'categories',
@@ -23,16 +24,7 @@ export const Categories: CollectionConfig = {
       required: true,
       localized: true,
     },
-    {
-      name: 'slug',
-      type: 'text',
-      required: true,
-      unique: true,
-      index: true,
-      admin: {
-        description: 'URL segment, e.g. "confezionatrici-verticali"',
-      },
-    },
+    slugField({ description: 'URL segment, e.g. "confezionatrici-verticali"' }),
     {
       name: 'description',
       type: 'textarea',

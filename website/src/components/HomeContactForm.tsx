@@ -50,14 +50,16 @@ export function HomeContactForm({
           <option value="other">{strings.areaOther}</option>
         </select>
       </label>
-      <label className="grid gap-1 text-sm font-medium">
-        {strings.nameLabel}
-        <input type="text" name="name" required className="rounded-md border border-ink/20 bg-white px-3 py-2.5" />
-      </label>
-      <label className="grid gap-1 text-sm font-medium">
-        {strings.emailLabel}
-        <input type="email" name="email" required className="rounded-md border border-ink/20 bg-white px-3 py-2.5" />
-      </label>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="grid gap-1 text-sm font-medium">
+          {strings.nameLabel}
+          <input type="text" name="name" required className="rounded-md border border-ink/20 bg-white px-3 py-2.5" />
+        </label>
+        <label className="grid gap-1 text-sm font-medium">
+          {strings.emailLabel}
+          <input type="email" name="email" required className="rounded-md border border-ink/20 bg-white px-3 py-2.5" />
+        </label>
+      </div>
       <label className="grid gap-1 text-sm font-medium">
         {strings.descriptionLabel}
         <textarea name="description" rows={4} className="rounded-md border border-ink/20 bg-white px-3 py-2.5" />

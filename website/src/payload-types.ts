@@ -604,6 +604,7 @@ export interface Site {
     navContacts: string;
     readMore: string;
     viewNow: string;
+    viewAll: string;
     relatedArticles: string;
     searchPlaceholder: string;
     technicalInformation: string;
@@ -740,6 +741,7 @@ export interface SiteSelect<T extends boolean = true> {
         navContacts?: T;
         readMore?: T;
         viewNow?: T;
+        viewAll?: T;
         relatedArticles?: T;
         searchPlaceholder?: T;
         technicalInformation?: T;
