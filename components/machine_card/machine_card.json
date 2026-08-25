@@ -1,0 +1,70 @@
+{
+    "machine_img": {
+        "src": "png in the cms",
+        "corner_radius": 45
+    },
+    "machine_details": {
+        "name": {
+            "text": "name of the machine, example FPK 24",
+            "char_size": 78,
+            "font": "Apfel Grotezk",
+            "font_style": "Mittel",
+            "color": "000000",
+            "anchor": "top"
+        },
+        "subtitle": {
+            "text": "Oltre la carta:\n la rivoluzione del sottovuoto impermeabile",
+            "char_size": 30,
+            "font": "Apfel Grotezk",
+            "font_style": "Mittel",
+            "color": "000000",
+            "anchor": "under name"
+        },
+        "separator": {
+            "color": "616161",
+            "width": 1,
+            "height": 783,
+            "anchor": "bottom"
+        },
+        "other_text": {
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "char_size": 24,
+            "font": "Apfel Grotezk",
+            "font_style": "Mittel",
+            "color": "000000",
+            "anchor": "under separator"
+        },
+        "discover_more_arrow": {
+            "src": "right_arrow.svg",
+            "anchor": "left of other_text"
+        }
+    },
+
+    "machine_card": {
+        "width": 1920,
+        "height": 957,
+        "types": "left or right",
+        "layout": {
+            "left": {
+                "background_color": "F5F5F5",
+                "machine_img": {
+                    "anchor": "left"
+                },
+                "machine_details": {
+                    "anchor": "right"
+                }
+            },
+            "right": {
+                "background_color": "FFFFFF",
+                "machine_img": {
+                    "anchor": "right"
+                },
+                "machine_details": {
+                    "anchor": "left"
+                }
+            }
+        }
+    }
+
+}
+

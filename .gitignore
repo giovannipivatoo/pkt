@@ -1,0 +1,14 @@
+.DS_Store
+.claude/settings.local.json
+
+node_modules/
+dist/
+.sanity/
+
+.env
+.env.*
+!.env.example
+
+*.log
+*.pem
+*.tsbuildinfo

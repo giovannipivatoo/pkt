@@ -1,0 +1,73 @@
+{
+    "W": 1799,
+    "H": 68,
+    "background": "trasparent",
+    "children": [
+        {
+            "logo": {
+                "W" : 292,
+                "H" : 68,
+                "src" : "logo.svg",
+                "position": {
+                    "x": 0,
+                    "y": 0
+                }
+            },
+            "pkt": {
+                "text": "Pkt",
+                "char_size": 22,
+                "font": "Apfel Grotezk",
+                "position": {
+                    "x": 992,
+                    "y": 0
+                }
+            }, 
+            "packaging_solutions": {
+                "text": "Packaging Solutions",
+                "char_size": 22,
+                "font": "Apfel Grotezk",
+                "position": {
+                    "x": 992,
+                    "y": 0
+                }
+            },
+            "sostenibilità": {
+                "text": "Sostenibilità",
+                "char_size": 22,
+                "font": "Apfel Grotezk",
+                "position": {
+                    "x": 1281,
+                    "y": 0
+                }
+            },
+            "feed": {
+                "text": "Feed",
+                "char_size": 22,
+                "font": "Apfel Grotezk",
+                "position": {
+                    "x": 1428,
+                    "y": 0
+                }
+            },
+            "contatti": {
+                "text": "Contatti",
+                "char_size": 22,
+                "font": "Apfel Grotezk",
+                "position": {
+                    "x": 1511,
+                    "y": 0
+                }
+            },
+            "language_selector": {
+                "text": "IT",
+                "char_size": 22,
+                "font": "Apfel Grotezk",
+                "position": {
+                    "x": 1730,
+                    "y": 0
+                }
+            }
+        }
+    ]
+    
+}

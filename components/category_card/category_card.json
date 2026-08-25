@@ -1,0 +1,24 @@
+{
+    "W": 659,
+    "H": 542,
+    "background": "trasparent",
+    "corner_radius": 45,
+    "image": {
+        "image" : "placeholder image, to be replaced with actual image in the cms",
+        "W" : 659,
+        "H" : 474,
+        "position": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "sub_title": {
+        "text": "Machine category, found in the cms",
+        "char_size": 40,
+        "font": "Apfel Grotezk",
+        "position": {
+            "x": 0,
+            "y": 492
+        }
+    }
+}

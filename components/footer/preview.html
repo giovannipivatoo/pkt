@@ -1,0 +1,345 @@
+<title>PKT — Footer</title>
+
+<style>
+  /* ============================================================
+     PKT — Footer
+     Source of truth for the future Astro component.
+     Everything is derived from the 1920px Figma canvas via --canvas,
+     so proportions hold at any viewport width.
+     ============================================================ */
+
+  .pkt-footer {
+    /* the design canvas: all sizes are a ratio of this */
+    --canvas: min(100vw, 1920px);
+
+    /* spec-derived ratios (Figma px / 1920) */
+    --pad: calc(var(--canvas) * 0.037);              /* 71  left inset */
+    --pad-top: calc(var(--canvas) * 0.108);          /* 208 to the logo */
+    --logo-w: calc(var(--canvas) * 0.152);           /* 292 */
+    --body: max(14px, calc(var(--canvas) * 0.009375)); /* 18 */
+    --nav: max(24px, calc(var(--canvas) * 0.02083));   /* 40 */
+    --li-w: calc(var(--canvas) * 0.0125);            /* 24  linkedin mark */
+
+    --ink: #fff;
+    --grey: #696969;
+    --red: #ff0000;
+
+    font-family: "Apfel Grotezk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: #000;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: max(620px, calc(var(--canvas) * 0.491)); /* 943 */
+    padding: var(--pad-top) var(--pad) var(--pad);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* --- decorative watermark (logo outline, red @ 60%) --------- */
+  .pkt-footer__mark {
+    position: absolute;
+    top: calc(var(--canvas) * -0.05);   /* lifted a bit above the top edge */
+    left: calc(var(--canvas) * 0.35);   /* x 673 / 1920 */
+    width: calc(var(--canvas) * 0.684); /* 1313 */
+    height: auto;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* --- two-column layout ------------------------------------- */
+  .pkt-footer__grid {
+    display: grid;
+    grid-template-columns:
+      minmax(0, calc(var(--canvas) * 0.33))   /* left  from x 71 */
+      minmax(0, calc(var(--canvas) * 0.40));  /* right from x ~1089, ~792 wide */
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "intro   ."
+      "contact links";
+    justify-content: space-between;
+    row-gap: calc(var(--canvas) * 0.03);
+    flex: 1;                 /* fill the footer so bottom rows pin correctly */
+  }
+
+  /* --- left: intro (logo + paragraph) ------------------------ */
+  .pkt-footer__intro { grid-area: intro; }
+
+  .pkt-footer__logo {
+    display: block;
+    width: var(--logo-w);
+    height: auto;
+  }
+
+  .pkt-footer__lead {
+    margin: calc(var(--canvas) * 0.061) 0 0;  /* logo 208 → paragraph 326 */
+    max-width: 22em;
+    font-size: var(--body);
+    line-height: 1.5;
+  }
+
+  /* --- left: contact details + linkedin ---------------------- */
+  .pkt-footer__contact {
+    grid-area: contact;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pkt-footer__address {
+    font-style: normal;
+    font-size: var(--body);
+    line-height: 1.55;
+  }
+  .pkt-footer__address a { color: inherit; text-decoration: none; }
+
+  .pkt-footer__company { font-weight: 500; }   /* Apfel Grotezk "Mittel" */
+  .pkt-footer__vat { color: var(--grey); }
+
+  .pkt-footer__linkedin {
+    margin-top: auto;                 /* pin toward the bottom... */
+    margin-bottom: calc(var(--canvas) * 0.035); /* ...then lift it a bit */
+    padding-top: calc(var(--canvas) * 0.02);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7em;
+    width: fit-content;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: var(--body);
+  }
+  .pkt-footer__linkedin svg { width: var(--li-w); height: auto; flex: none; }
+  .pkt-footer__linkedin:hover,
+  .pkt-footer__linkedin:focus-visible { color: var(--red); }
+  .pkt-footer__linkedin:hover svg path,
+  .pkt-footer__linkedin:focus-visible svg path { fill: currentColor; }
+
+  /* --- right: nav links + legal ------------------------------ */
+  .pkt-footer__right {
+    grid-area: links;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pkt-footer__nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pkt-footer__nav a {
+    display: block;
+    padding: calc(var(--canvas) * 0.014) 0;   /* tall rows */
+    font-size: var(--nav);
+    line-height: 1;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+  /* line_separator under every link — including Contatti, none above the first */
+  .pkt-footer__nav a { border-bottom: 1px solid var(--grey); }
+  .pkt-footer__nav a:hover,
+  .pkt-footer__nav a:focus-visible { color: var(--red); }
+
+  .pkt-footer__legal {
+    margin-top: auto;                 /* pin to the footer bottom (y 857) */
+    padding-top: calc(var(--canvas) * 0.02);
+    display: flex;
+    justify-content: flex-end;        /* right-aligned with the separators */
+    gap: 1.6em;
+    list-style: none;
+  }
+  .pkt-footer__legal a {
+    font-size: var(--body);
+    color: var(--grey);
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+  .pkt-footer__legal a:hover,
+  .pkt-footer__legal a:focus-visible { color: var(--ink); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pkt-footer a { transition: none; }
+  }
+
+  /* --- mobile ------------------------------------------------- */
+  @media (max-width: 820px) {
+    .pkt-footer {
+      --nav: max(24px, calc(var(--canvas) * 0.06));
+      --pad-top: calc(var(--canvas) * 0.09);
+    }
+    .pkt-footer__grid {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "intro"
+        "links"
+        "contact";
+      row-gap: calc(var(--canvas) * 0.06);
+    }
+    .pkt-footer__mark { left: 20%; width: 90%; opacity: 0.75; }
+    .pkt-footer__linkedin { margin-top: calc(var(--canvas) * 0.06); }
+    .pkt-footer__legal { justify-content: flex-start; }
+  }
+
+  /* ============================================================
+     Preview chrome — NOT part of the component
+     ============================================================ */
+
+  :root {
+    --pv-bg: #f4f5f6;
+    --pv-panel: #fff;
+    --pv-ink: #16191d;
+    --pv-muted: #626b76;
+    --pv-line: #dfe3e7;
+    --pv-accent: #ff0000;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --pv-bg: #0e1114; --pv-panel: #171b20; --pv-ink: #e8eaed;
+      --pv-muted: #98a1ac; --pv-line: #272d34;
+    }
+  }
+  :root[data-theme="dark"] {
+    --pv-bg: #0e1114; --pv-panel: #171b20; --pv-ink: #e8eaed;
+    --pv-muted: #98a1ac; --pv-line: #272d34;
+  }
+  :root[data-theme="light"] {
+    --pv-bg: #f4f5f6; --pv-panel: #fff; --pv-ink: #16191d;
+    --pv-muted: #626b76; --pv-line: #dfe3e7;
+  }
+
+  body {
+    margin: 0;
+    background: var(--pv-bg);
+    color: var(--pv-ink);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .pv-head {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px;
+    max-width: 1920px; margin: 0 auto; padding: 24px 20px 16px;
+  }
+  .pv-head h1 { margin: 0; font-size: 15px; font-weight: 600; letter-spacing: 0.01em; }
+  .pv-head span { font-size: 13px; color: var(--pv-muted); }
+
+  .pv-caption {
+    max-width: 1920px; margin: 0 auto; padding: 24px 20px 0;
+    font-size: 13px; color: var(--pv-muted);
+  }
+  .pv-tag {
+    display: inline-block; border: 1px dashed var(--pv-accent); color: var(--pv-accent);
+    border-radius: 4px; padding: 1px 7px; font-size: 11px;
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .pv-notes {
+    max-width: 1920px; margin: 40px auto 0; padding: 22px 26px;
+    background: var(--pv-panel); border: 1px solid var(--pv-line); border-radius: 12px;
+  }
+  .pv-notes h2 {
+    margin: 0 0 14px; font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.09em; color: var(--pv-muted); font-weight: 600;
+  }
+  .pv-notes ul { margin: 0; padding-left: 18px; }
+  .pv-notes li { margin-bottom: 9px; font-size: 14px; line-height: 1.5; }
+  .pv-notes li:last-child { margin-bottom: 0; }
+  .pv-notes code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px;
+    background: color-mix(in srgb, var(--pv-accent) 8%, transparent);
+    padding: 1px 5px; border-radius: 4px;
+  }
+  :focus-visible { outline: 2px solid var(--pv-accent); outline-offset: 3px; }
+</style>
+
+<div class="pv-head">
+  <h1>Footer</h1>
+  <span>1920 × 943 · resize the window to check the scaling</span>
+</div>
+
+<!-- ==================== COMPONENT ==================== -->
+<footer class="pkt-footer">
+  <!-- decorative watermark: logo_outline.svg, red @ 60% -->
+  <svg class="pkt-footer__mark" viewBox="0 0 1247 717" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M1130.07 351.727C1230.97 351.727 1312.75 433.499 1312.75 534.367L1312.73 536.728C1311.47 636.508 1230.18 717 1130.07 717L1127.71 716.984C1028.68 715.731 948.639 635.714 947.385 536.728L947.37 534.367C947.37 433.507 1029.16 351.727 1130.07 351.727ZM1130.07 352.727C1029.72 352.727 948.37 434.06 948.37 534.367C948.37 634.674 1029.72 716 1130.07 716C1230.41 716 1311.75 634.683 1311.75 534.367C1311.75 434.052 1230.42 352.727 1130.07 352.727ZM847.784 0.0117188C929.121 1.0414 994.691 67.2657 994.691 148.795L994.68 150.718C993.65 232.01 927.403 297.597 845.86 297.597L843.937 297.585C763.278 296.563 698.015 231.37 696.992 150.718L696.98 148.795C696.98 66.6159 763.636 0.0001319 845.86 0L847.784 0.0117188ZM845.86 1C764.188 1.00013 697.98 67.1688 697.98 148.795C697.981 230.421 764.228 296.597 845.86 296.597C927.493 296.597 993.691 230.421 993.691 148.795C993.691 67.1763 927.532 1.00015 845.86 1ZM75.418 142.032C116.083 142.547 148.88 175.651 148.88 216.439L148.873 217.401C148.358 258.051 115.259 290.852 74.4561 290.853L73.4932 290.847C32.8129 290.332 0.000262006 257.212 0 216.439C7.42966e-05 175.346 33.3479 142.026 74.4561 142.026L75.418 142.032ZM74.4561 143.026C33.8996 143.026 1.00007 175.899 1 216.439C1.00026 256.98 33.8839 289.853 74.4561 289.853C115.028 289.852 147.88 256.98 147.88 216.439C147.88 175.883 115.012 143.027 74.4561 143.026ZM406.017 6.75293C462.056 6.75293 507.519 52.1918 507.52 108.211L507.511 109.522C506.808 164.953 461.618 209.669 406.017 209.669C349.978 209.669 304.523 164.246 304.522 108.211C304.523 52.176 349.978 6.75316 406.017 6.75293ZM406.017 7.75293C350.529 7.75316 305.523 52.7287 305.522 108.211C305.523 163.693 350.53 208.669 406.017 208.669C461.504 208.669 506.519 163.693 506.52 108.211C506.519 52.7445 461.504 7.75293 406.017 7.75293Z" fill="#FF0000" fill-opacity="0.6"/>
+  </svg>
+
+  <div class="pkt-footer__grid">
+    <!-- left: logo + lead paragraph -->
+    <div class="pkt-footer__intro">
+      <a class="pkt-footer__logo" href="/it/" aria-label="PKT — home">
+        <svg viewBox="0 0 292 68" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" width="292" height="68">
+          <path d="M108.618 44.2139C108.618 52.5598 101.851 59.3251 93.5028 59.3251C85.1546 59.3251 78.3862 52.5591 78.3862 44.2139C78.3862 35.8686 85.1539 29.1021 93.5028 29.1021C101.852 29.1021 108.618 35.868 108.618 44.2139Z" fill="#FF0000"/>
+          <path d="M82.3017 12.3114C82.3017 19.111 76.7872 24.6234 69.9872 24.6234C63.1872 24.6234 57.6688 19.111 57.6688 12.3114C57.6688 5.51182 63.1839 0 69.9872 0C76.7905 0 82.3017 5.51248 82.3017 12.3114Z" fill="#FF0000"/>
+          <path d="M41.9926 8.95333C41.9926 13.5897 38.2309 17.3481 33.5942 17.3481C28.9575 17.3481 25.1965 13.5897 25.1965 8.95333C25.1965 4.31693 28.9575 0.558594 33.5942 0.558594C38.2309 0.558594 41.9926 4.31825 41.9926 8.95333Z" fill="#FF0000"/>
+          <path d="M12.3184 17.9085C12.3184 21.3086 9.56318 24.0655 6.16053 24.0655C2.75789 24.0655 0 21.3086 0 17.9085C0 14.5084 2.75921 11.7515 6.16053 11.7515C9.56186 11.7515 12.3184 14.507 12.3184 17.9085Z" fill="#FF0000"/>
+          <path d="M167.852 40.313C164.135 43.4142 158.826 44.9645 151.925 44.9645H138.702V67.7923H125.518V4.30566H152.787C159.073 4.30566 164.085 5.94239 167.823 9.21584C171.56 12.4893 173.429 17.5571 173.429 24.42C173.429 31.9143 171.57 37.2117 167.852 40.313ZM157.724 17.4423C156.044 16.0359 153.69 15.332 150.662 15.332H138.703V34.0247H150.662C153.69 34.0247 156.044 33.264 157.724 31.7414C159.405 30.2201 160.246 27.8076 160.246 24.5058C160.246 21.204 159.405 18.8495 157.724 17.4423Z" fill="white"/>
+          <path d="M183.317 4.30566H196.372V30.4642L220.909 4.30566H238.057L211.995 30.4161L239.393 67.7923H222.33L202.763 40.0794L196.372 46.5584V67.7923H183.317V4.30566Z" fill="white"/>
+          <path d="M292 4.30566V15.547H272.999V67.7916H259.643V15.5477H240.555V4.30566H292Z" fill="white"/>
+        </svg>
+      </a>
+
+      <p class="pkt-footer__lead">
+        Radicati nell'ingegneria, spinti dalla ricerca continua e dall'innovazione.
+        Ogni giorno progettiamo macchine e linee per l'imballaggio che rendono la
+        produzione più semplice, più efficiente e più sostenibile.
+      </p>
+    </div>
+
+    <!-- left: contact details + linkedin -->
+    <div class="pkt-footer__contact">
+      <address class="pkt-footer__address">
+        <div class="pkt-footer__company">PKT s.r.l.</div>
+        <div>Via Marco Biagi, 28</div>
+        <div>31037 - Castione di Loria</div>
+        <div>Tel: <a href="tel:+390423750111">+39 0423 750 111</a></div>
+        <div>Fax: +39 0423 750 112</div>
+        <div class="pkt-footer__vat">P.IVA IT04121990289</div>
+      </address>
+
+      <a class="pkt-footer__linkedin"
+         href="https://www.linkedin.com/company/pkt-technology/"
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M22.2234 0H1.77187C0.792187 0 0 0.773438 0 1.72969V22.2656C0 23.2219 0.792187 24 1.77187 24H22.2234C23.2031 24 24 23.2219 24 22.2703V1.72969C24 0.773438 23.2031 0 22.2234 0ZM7.12031 20.4516H3.55781V8.99531H7.12031V20.4516ZM5.33906 7.43438C4.19531 7.43438 3.27188 6.51094 3.27188 5.37187C3.27188 4.23281 4.19531 3.30937 5.33906 3.30937C6.47813 3.30937 7.40156 4.23281 7.40156 5.37187C7.40156 6.50625 6.47813 7.43438 5.33906 7.43438ZM20.4516 20.4516H16.8937V14.8828C16.8937 13.5562 16.8703 11.8453 15.0422 11.8453C13.1906 11.8453 12.9094 13.2937 12.9094 14.7891V20.4516H9.35625V8.99531H12.7687V10.5609H12.8156C13.2891 9.66094 14.4516 8.70938 16.1813 8.70938C19.7859 8.70938 20.4516 11.0813 20.4516 14.1656V20.4516Z" fill="white"/>
+        </svg>
+        <span>pkt-technology</span>
+      </a>
+    </div>
+
+    <!-- right: nav links + legal -->
+    <nav class="pkt-footer__right" aria-label="Footer">
+      <ul class="pkt-footer__nav">
+        <li><a href="/it/pkt/">Pkt</a></li>
+        <li><a href="/it/packaging-solutions/">Packaging Solutions</a></li>
+        <li><a href="/it/feed/">Feed</a></li>
+        <li><a href="/it/contatti/">Contatti</a></li>
+      </ul>
+
+      <ul class="pkt-footer__legal">
+        <li><a href="/it/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/it/cookie-policy/">Cookie Policy</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+<!-- ================== END COMPONENT ================== -->
+
+<p class="pv-caption">
+  <span class="pv-tag">placeholder</span>
+  Copy, address and links are placeholder Italian from the spec.
+</p>
+
+<div class="pv-notes">
+  <h2>Decisions I made where the spec was silent</h2>
+  <ul>
+    <li><strong>Absolute coordinates → ratios.</strong> Every size is <code>--canvas × ratio</code>, where <code>--canvas</code> is <code>min(100vw, 1920px)</code>. The fixed <code>y:</code> values become a two-row grid, so the columns hold at any width instead of breaking off the 1920 canvas.</li>
+    <li><strong>Column x-positions.</strong> Left starts at 71, right at ~1089 with a ~792-wide track — reproduced with <code>justify-content: space-between</code> and proportional tracks (0.33 / 0.40). The empty middle is where the watermark shows. Pixel-exact positions weren't pinned; say so if the gap matters.</li>
+    <li><strong>Vertical alignment.</strong> Contact details (y 533) and nav links (y 536) top-align on grid row 2; LinkedIn (y 852) and legal links (y 857) are <code>margin-top: auto</code> pinned to the footer bottom — so they stay aligned as content reflows.</li>
+    <li><strong>Nav <code>line_separator</code></strong> is a <code>border-top</code> on each link (grey <code>#696969</code>, 1px), spanning the ~792 column. Legal links are right-aligned to that same edge, per <em>"right aligned with line separator"</em>.</li>
+    <li><strong>Font weights.</strong> <code>"Mittel"</code> → <code>font-weight: 500</code>, <code>"Regular"</code> → 400. <code>Apfel Grotezk</code> falls back to Helvetica until the licensed webfont is added (same note as the hero).</li>
+    <li><strong>Links made real.</strong> Phone/fax are <code>tel:</code> links, LinkedIn opens in a new tab with <code>rel="noopener"</code>, legal links point at <code>/privacy-policy</code> / <code>/cookie-policy</code>. Spec gave labels only — wire the hrefs to real slugs.</li>
+    <li><strong>Spec typos normalised</strong> in the rendered copy: <em>"Contattti" → "Contatti"</em>. LinkedIn key is <code>linkdin</code> in the JSON; kept the class as <code>linkedin</code>.</li>
+    <li><strong><code>send.svg</code> is in the folder but not referenced by <code>footer.json</code></strong>, so it isn't used here. It looks like the contact-form submit icon — left out until the spec calls for it.</li>
+    <li><strong>Paragraph colour</strong> wasn't given; rendered white on black. Details are explicitly white, P.IVA and legal are grey <code>#696969</code>.</li>
+  </ul>
+</div>

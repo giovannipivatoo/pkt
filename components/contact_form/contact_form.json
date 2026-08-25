@@ -1,0 +1,119 @@
+{
+    "W": 1920,
+    "H": 518,
+    "background": "292929",
+    "children": [
+        {
+            "title": {
+                "text": "Contattaci",
+                "char_size": 24,
+                "font": "Apfel Grotezk",
+                "position": {
+                    "x": 84,
+                    "y": 82
+                }
+            },
+            "slogan": {
+                "text": "I GRANDI PROGETTI\n COMINCIANO SEMPRE\nCON UNA\nCONVERSAZIONE",
+                "char_size": 40,
+                "font": "Apfel Grotezk",
+                "syle": "Mittel",
+                "W": 541,
+                "H": 166,
+                "position": {
+                    "x": 84,
+                    "y": 124
+                }
+            },
+            "form_fields": {
+                "name_field": {
+                    "placeholder_text": "Nome Cognome*",
+                    "position": {
+                        "x": 645,
+                        "y": 84
+                    },
+                    "line_under": {
+                        "color": "616161",
+                        "thickness": 1,
+                        "position": {
+                            "x": "field.x",
+                            "y": "field.y + 50"
+                        }
+                    }
+                },
+                "company_field": {
+                    "placeholder_text": "Azienda*",
+                    "position": {
+                        "x": 645,
+                        "y": 167
+                    },
+                    "line_under": {
+                        "color": "616161",
+                        "thickness": 1,
+                        "position": {
+                            "x": "field.x",
+                            "y": "field.y + 50"
+                        }
+                    }
+                },
+                "email_field": {
+                    "placeholder_text": "E-mail*",
+                    "position": {
+                        "x": 645,
+                        "y": 250
+                    },
+                    "line_under": {
+                        "color": "616161",
+                        "thickness": 1,
+                        "position": {
+                            "x": "field.x",
+                            "y": "field.y + 50"
+                        }
+                    }
+                },
+                "privacy_field": {
+                    "logo" : { 
+                        "src": "checkbox.svg", 
+                        "W" : 13,
+                        "H" : 13
+                    },
+                    "placeholder_text": "Dichiaro di aver preso visione dell’informativa privacy*",
+                    "position": {
+                        "x": 645,
+                        "y": 372
+                    }
+                },
+                "message_field": {
+                    "placeholder_text": "Richiesta",
+                    "position": {
+                        "x": 1170,
+                        "y": 84
+                    },
+                    "text_area": {
+                        "W": 675,
+                        "H": 164,
+                        "color": "616161",
+                    "thickness": 1
+                    }
+                },
+                "submit_button": {
+                    "text": "Invia Richiesta",
+                    "color": "FFFFFF",
+                    "corner_radius": 66.5,
+                    "W": 281,
+                    "H": 62,
+                    "position": {
+                        "x": 1569,
+                        "y": 349
+                    },
+                    "logo" : { 
+                        "src": "send.svg", 
+                        "W" : 20,
+                        "H" : 20,
+                        "position": "to the right of the text"
+                    }
+                }
+            }
+        }
+    ]
+}

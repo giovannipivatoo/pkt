@@ -1,0 +1,245 @@
+<title>PKT — Category card</title>
+
+<style>
+  /* ============================================================
+     PKT — Category card
+     Source of truth for the future Astro component.
+     Everything is derived from the 659px Figma card via --card,
+     so proportions hold at any column width in the grid.
+     ============================================================ */
+
+  .pkt-cat {
+    /* the design canvas: all sizes are a ratio of this */
+    --card: min(100%, 659px);
+
+    /* spec-derived ratios (Figma px / 659) */
+    --gap: calc(var(--card) * 0.0273);              /* 18  → image 474 to title 492 */
+    --title: max(20px, calc(var(--card) * 0.0607)); /* 40 */
+    --radius: min(45px, calc(var(--card) * 0.0683)); /* 45 */
+
+    --ink: #16191d;
+    --red: #ff0000;
+
+    font-family: "Apfel Grotezk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    width: var(--card);
+    text-decoration: none;
+    background: transparent;   /* spec: "trasparent" */
+  }
+
+  .pkt-cat__img {
+    /* 659 × 474 */
+    width: 100%;
+    aspect-ratio: 659 / 474;
+    border-radius: var(--radius);
+    overflow: hidden;
+    object-fit: cover;         /* applies once it's the CMS <img> */
+    transition: transform 0.3s ease;
+
+    /* PLACEHOLDER — swap for <img> from the CMS (same class), e.g.
+       <img class="pkt-cat__img" src="…" alt="Confezionatrici"> */
+    background:
+      radial-gradient(120% 90% at 20% 12%, #3a434e 0%, transparent 60%),
+      linear-gradient(155deg, #232a32 0%, #0f1317 100%);
+  }
+
+  .pkt-cat:hover .pkt-cat__img,
+  .pkt-cat:focus-visible .pkt-cat__img { transform: scale(1.02); }
+
+  .pkt-cat__title {
+    margin: 0;
+    font-size: var(--title);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    transition: color 0.18s ease;
+  }
+
+  .pkt-cat:hover .pkt-cat__title,
+  .pkt-cat:focus-visible .pkt-cat__title { color: var(--red); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pkt-cat__img,
+    .pkt-cat__title { transition: none; }
+  }
+
+  /* ============================================================
+     Preview chrome — NOT part of the component
+     ============================================================ */
+
+  :root {
+    --pv-bg: #f4f5f6;
+    --pv-panel: #fff;
+    --pv-ink: #16191d;
+    --pv-muted: #626b76;
+    --pv-line: #dfe3e7;
+    --pv-accent: #ff0000;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --pv-bg: #0e1114;
+      --pv-panel: #171b20;
+      --pv-ink: #e8eaed;
+      --pv-muted: #98a1ac;
+      --pv-line: #272d34;
+    }
+    /* card text follows the surface it sits on */
+    .pkt-cat { --ink: #e8eaed; }
+  }
+
+  :root[data-theme="dark"] {
+    --pv-bg: #0e1114;
+    --pv-panel: #171b20;
+    --pv-ink: #e8eaed;
+    --pv-muted: #98a1ac;
+    --pv-line: #272d34;
+  }
+  :root[data-theme="dark"] .pkt-cat { --ink: #e8eaed; }
+
+  :root[data-theme="light"] {
+    --pv-bg: #f4f5f6;
+    --pv-panel: #fff;
+    --pv-ink: #16191d;
+    --pv-muted: #626b76;
+    --pv-line: #dfe3e7;
+  }
+  :root[data-theme="light"] .pkt-cat { --ink: #16191d; }
+
+  body {
+    margin: 0;
+    background: var(--pv-bg);
+    color: var(--pv-ink);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .pv-wrap {
+    max-width: 1874px;
+    margin: 0 auto;
+    padding: 24px 0 72px;
+  }
+
+  .pv-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 12px;
+    padding: 0 20px 16px;
+  }
+
+  .pv-head h1 { margin: 0; font-size: 15px; font-weight: 600; letter-spacing: 0.01em; }
+  .pv-head span { font-size: 13px; color: var(--pv-muted); }
+
+  /* categories listing — the real grid the card lives in */
+  .pv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px 32px;
+    padding: 0 20px;
+  }
+
+  .pv-caption {
+    padding: 24px 20px 0;
+    font-size: 13px;
+    color: var(--pv-muted);
+  }
+
+  .pv-tag {
+    display: inline-block;
+    border: 1px dashed var(--pv-accent);
+    color: var(--pv-accent);
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .pv-notes {
+    margin: 40px 20px 0;
+    padding: 22px 26px;
+    background: var(--pv-panel);
+    border: 1px solid var(--pv-line);
+    border-radius: 12px;
+  }
+
+  .pv-notes h2 {
+    margin: 0 0 14px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--pv-muted);
+    font-weight: 600;
+  }
+
+  .pv-notes ul { margin: 0; padding-left: 18px; }
+  .pv-notes li { margin-bottom: 9px; font-size: 14px; line-height: 1.5; }
+  .pv-notes li:last-child { margin-bottom: 0; }
+  .pv-notes code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12.5px;
+    background: color-mix(in srgb, var(--pv-accent) 8%, transparent);
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+
+  :focus-visible { outline: 2px solid var(--pv-accent); outline-offset: 3px; border-radius: 2px; }
+
+  /* preview-only: distinct placeholder tints so the cards read apart */
+  .pv-grid .pkt-cat:nth-child(2) .pkt-cat__img {
+    background: radial-gradient(120% 90% at 80% 12%, #4a3a3a 0%, transparent 60%),
+                linear-gradient(155deg, #2c2323 0%, #16100f 100%);
+  }
+  .pv-grid .pkt-cat:nth-child(3) .pkt-cat__img {
+    background: radial-gradient(120% 90% at 50% 10%, #3a4a44 0%, transparent 60%),
+                linear-gradient(155deg, #21302b 0%, #0d1512 100%);
+  }
+</style>
+
+<div class="pv-wrap">
+  <div class="pv-head">
+    <h1>Category card</h1>
+    <span>659 × 542 · shown in the categories grid · resize the window to check the scaling</span>
+  </div>
+
+  <div class="pv-grid">
+    <!-- ==================== COMPONENT ==================== -->
+    <a class="pkt-cat" href="/it/packaging-solutions/confezionatrici/">
+      <div class="pkt-cat__img" role="presentation"></div>
+      <h3 class="pkt-cat__title">Confezionatrici</h3>
+    </a>
+    <!-- ================== END COMPONENT ================== -->
+
+    <a class="pkt-cat" href="/it/packaging-solutions/astucciatrici/">
+      <div class="pkt-cat__img" role="presentation"></div>
+      <h3 class="pkt-cat__title">Astucciatrici</h3>
+    </a>
+
+    <a class="pkt-cat" href="/it/packaging-solutions/fine-linea/">
+      <div class="pkt-cat__img" role="presentation"></div>
+      <h3 class="pkt-cat__title">Fine linea</h3>
+    </a>
+  </div>
+
+  <p class="pv-caption">
+    <span class="pv-tag">placeholder</span>
+    Images are CSS gradients standing in for the CMS image. Category names are placeholder Italian.
+  </p>
+
+  <div class="pv-notes">
+    <h2>Decisions I made where the spec was silent</h2>
+    <ul>
+      <li><strong>Absolute coordinates → ratios.</strong> Everything is <code>--card × ratio</code>, where <code>--card</code> is <code>min(100%, 659px)</code>. The gap (18 / 659) and title (40 / 659) hold at any grid column width — a fixed 659 card would overflow a 3-up grid on a laptop.</li>
+      <li><strong>Image via <code>aspect-ratio: 659 / 474</code></strong> instead of a hardcoded height, so it scales with the column. Swap the placeholder <code>&lt;div&gt;</code> for the CMS <code>&lt;img class="pkt-cat__img"&gt;</code> — <code>object-fit: cover</code> is already set. <em>The <code>alt</code> should be the category name (a11y).</em></li>
+      <li><strong>Whole card is a link</strong> to the category page. The spec gives no target, but a category card in a listing is clickable — heading sits inside the <code>&lt;a&gt;</code>.</li>
+      <li><strong>Subtitle colour not in spec.</strong> Uses an ink token that flips for dark surfaces, since the card background is transparent and inherits the page. Confirm the colour.</li>
+      <li><strong>Font.</strong> <code>Apfel Grotezk</code> is declared first but no file exists, so it falls back to Helvetica — same commercial-webfont licence note as the hero.</li>
+      <li><strong>Hover / focus</strong> were unspecified: image scales to 1.02 and the title turns <code>#FF0000</code>, matching the brand. Reduced-motion is respected.</li>
+      <li><strong>Long names wrap</strong> under the image and grow the card downward (spec H 542 assumes one line). Fine in a grid; rows align to the tallest card.</li>
+    </ul>
+  </div>
+</div>

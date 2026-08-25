@@ -1,0 +1,442 @@
+<title>PKT — Hero + Top nav</title>
+
+<style>
+  /* ============================================================
+     PKT — Hero with top nav
+     Source of truth for the future Astro component.
+     Everything is derived from the 1874px Figma canvas via --canvas,
+     so proportions hold at any viewport width.
+     ============================================================ */
+
+  .pkt-hero {
+    /* the design canvas: all sizes are a ratio of this */
+    --canvas: min(100vw, 1874px);
+
+    /* spec-derived ratios (Figma px / 1874) */
+    --pad: calc(var(--canvas) * 0.02);          /* nav inset 37.5 / title x 31, unified */
+    --radius: min(45px, calc(var(--canvas) * 0.024));
+    --title: calc(var(--canvas) * 0.1089);      /* 204 */
+    --body: max(16px, calc(var(--canvas) * 0.016));   /* 30 */
+    --navtext: max(15px, calc(var(--canvas) * 0.0117)); /* 22 */
+    --logo-w: calc(var(--canvas) * 0.1558);     /* 292 */
+
+    --ink: #fff;
+    --red: #ff0000;
+
+    font-family: "Apfel Grotezk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: var(--canvas);
+    min-height: max(520px, calc(var(--canvas) * 0.47));
+    padding: var(--pad);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  /* --- background image + 42% black filter ------------------- */
+
+  .pkt-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    /* PLACEHOLDER — swap for <img> from the CMS */
+    background:
+      radial-gradient(115% 75% at 18% 8%,  #454d57 0%, transparent 58%),
+      radial-gradient(85% 65% at 88% 26%,  #2b333c 0%, transparent 52%),
+      repeating-linear-gradient(114deg, rgba(255,255,255,.028) 0 2px, transparent 2px 46px),
+      linear-gradient(158deg, #1d2229 0%, #0c0f12 100%);
+  }
+
+  .pkt-hero__bg::after {
+    /* 000000 @ 42% */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #000;
+    opacity: 0.42;
+  }
+
+  /* --- top nav ----------------------------------------------- */
+
+  .pkt-nav {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--canvas) * 0.02);
+    min-height: calc(var(--canvas) * 0.0363); /* 68 */
+  }
+
+  .pkt-nav__logo {
+    display: block;
+    width: var(--logo-w);
+    height: auto;
+    flex: none;
+  }
+
+  .pkt-nav__links {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--canvas) * 0.023);
+    margin-left: auto;
+    font-size: var(--navtext);
+  }
+
+  .pkt-nav__link {
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+    padding-block: 0.4em;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.18s ease;
+  }
+
+  .pkt-nav__link:hover,
+  .pkt-nav__link:focus-visible {
+    border-bottom-color: var(--red);
+  }
+
+  /* language selector — native disclosure, no JS */
+  .pkt-lang {
+    position: relative;
+    margin-left: calc(var(--canvas) * 0.045);
+    font-size: var(--navtext);
+  }
+
+  .pkt-lang__current {
+    cursor: pointer;
+    list-style: none;
+    padding-block: 0.4em;
+    border-bottom: 2px solid transparent;
+  }
+
+  .pkt-lang__current::-webkit-details-marker { display: none; }
+  .pkt-lang[open] .pkt-lang__current,
+  .pkt-lang__current:hover { border-bottom-color: var(--red); }
+
+  .pkt-lang__list {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin: 0.5em 0 0;
+    padding: 0.5em 0;
+    list-style: none;
+    min-width: 5em;
+    background: rgba(12, 15, 18, 0.94);
+    border-radius: 8px;
+  }
+
+  .pkt-lang__list a {
+    display: block;
+    padding: 0.35em 1em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .pkt-lang__list a:hover,
+  .pkt-lang__list a:focus-visible { color: var(--red); }
+
+  /* mobile menu toggle — hidden on desktop */
+  .pkt-burger { display: none; }
+
+  /* --- hero copy ---------------------------------------------- */
+
+  .pkt-hero__body {
+    margin-top: auto;             /* anchor the block to the bottom */
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--canvas) * 0.022);
+  }
+
+  .pkt-hero__title {
+    margin: 0;
+    font-size: var(--title);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+
+  .pkt-hero__cols {
+    display: grid;
+    grid-template-columns: 71.3% 1fr;  /* description starts at x:1336 */
+    gap: calc(var(--canvas) * 0.02);
+    font-size: var(--body);
+    line-height: 1.35;
+  }
+
+  .pkt-hero__subtitle,
+  .pkt-hero__description { margin: 0; }
+
+  .pkt-hero__subtitle { max-width: 34ch; }
+
+  /* --- mobile -------------------------------------------------- */
+
+  @media (max-width: 900px) {
+    .pkt-hero {
+      --title: max(38px, calc(var(--canvas) * 0.125));
+      min-height: 460px;
+    }
+
+    .pkt-nav__links--end { display: none; }
+
+    .pkt-burger {
+      display: block;
+      margin-left: auto;
+      position: relative;
+    }
+
+    .pkt-burger__toggle {
+      list-style: none;
+      cursor: pointer;
+      font-size: var(--navtext);
+      padding: 0.4em 0;
+    }
+
+    .pkt-burger__toggle::-webkit-details-marker { display: none; }
+
+    .pkt-burger__panel {
+      position: absolute;
+      right: 0;
+      top: 100%;
+      margin-top: 0.6em;
+      padding: 0.75em 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25em;
+      min-width: 13em;
+      background: rgba(12, 15, 18, 0.94);
+      border-radius: 10px;
+      font-size: var(--navtext);
+    }
+
+    .pkt-burger__panel .pkt-nav__link {
+      padding: 0.5em 1.1em;
+      border-bottom: none;
+    }
+
+    .pkt-hero__cols {
+      grid-template-columns: 1fr;
+      gap: calc(var(--canvas) * 0.045);
+    }
+
+    .pkt-hero__subtitle { max-width: none; }
+
+    .pkt-br { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pkt-nav__link { transition: none; }
+  }
+
+  /* ============================================================
+     Preview chrome — NOT part of the component
+     ============================================================ */
+
+  :root {
+    --pv-bg: #f4f5f6;
+    --pv-panel: #fff;
+    --pv-ink: #16191d;
+    --pv-muted: #626b76;
+    --pv-line: #dfe3e7;
+    --pv-accent: #ff0000;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --pv-bg: #0e1114;
+      --pv-panel: #171b20;
+      --pv-ink: #e8eaed;
+      --pv-muted: #98a1ac;
+      --pv-line: #272d34;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --pv-bg: #0e1114;
+    --pv-panel: #171b20;
+    --pv-ink: #e8eaed;
+    --pv-muted: #98a1ac;
+    --pv-line: #272d34;
+  }
+
+  :root[data-theme="light"] {
+    --pv-bg: #f4f5f6;
+    --pv-panel: #fff;
+    --pv-ink: #16191d;
+    --pv-muted: #626b76;
+    --pv-line: #dfe3e7;
+  }
+
+  body {
+    margin: 0;
+    background: var(--pv-bg);
+    color: var(--pv-ink);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .pv-wrap {
+    max-width: 1874px;
+    margin: 0 auto;
+    padding: 24px 0 72px;
+  }
+
+  .pv-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 12px;
+    padding: 0 20px 16px;
+  }
+
+  .pv-head h1 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .pv-head span {
+    font-size: 13px;
+    color: var(--pv-muted);
+  }
+
+  .pv-caption {
+    padding: 12px 20px 0;
+    font-size: 13px;
+    color: var(--pv-muted);
+  }
+
+  .pv-tag {
+    display: inline-block;
+    border: 1px dashed var(--pv-accent);
+    color: var(--pv-accent);
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .pv-notes {
+    margin: 40px 20px 0;
+    padding: 22px 26px;
+    background: var(--pv-panel);
+    border: 1px solid var(--pv-line);
+    border-radius: 12px;
+  }
+
+  .pv-notes h2 {
+    margin: 0 0 14px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--pv-muted);
+    font-weight: 600;
+  }
+
+  .pv-notes ul { margin: 0; padding-left: 18px; }
+  .pv-notes li { margin-bottom: 9px; font-size: 14px; line-height: 1.5; }
+  .pv-notes li:last-child { margin-bottom: 0; }
+  .pv-notes code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12.5px;
+    background: color-mix(in srgb, var(--pv-accent) 8%, transparent);
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+
+  :focus-visible { outline: 2px solid var(--pv-accent); outline-offset: 2px; }
+</style>
+
+<div class="pv-wrap">
+  <div class="pv-head">
+    <h1>Hero + Top nav</h1>
+    <span>1874 × auto · resize the window to check the scaling</span>
+  </div>
+
+  <!-- ==================== COMPONENT ==================== -->
+  <header class="pkt-hero">
+    <div class="pkt-hero__bg" role="presentation"></div>
+
+    <nav class="pkt-nav" aria-label="Principale">
+      <a href="/it/" aria-label="PKT — home">
+        <svg class="pkt-nav__logo" viewBox="0 0 292 68" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <path d="M108.618 44.2139C108.618 52.5598 101.851 59.3251 93.5028 59.3251C85.1546 59.3251 78.3862 52.5591 78.3862 44.2139C78.3862 35.8686 85.1539 29.1021 93.5028 29.1021C101.852 29.1021 108.618 35.868 108.618 44.2139Z" fill="#FF0000"/>
+          <path d="M82.3017 12.3114C82.3017 19.111 76.7872 24.6234 69.9872 24.6234C63.1872 24.6234 57.6688 19.111 57.6688 12.3114C57.6688 5.51182 63.1839 0 69.9872 0C76.7905 0 82.3017 5.51248 82.3017 12.3114Z" fill="#FF0000"/>
+          <path d="M41.9926 8.95333C41.9926 13.5897 38.2309 17.3481 33.5942 17.3481C28.9575 17.3481 25.1965 13.5897 25.1965 8.95333C25.1965 4.31693 28.9575 0.558594 33.5942 0.558594C38.2309 0.558594 41.9926 4.31825 41.9926 8.95333Z" fill="#FF0000"/>
+          <path d="M12.3184 17.9085C12.3184 21.3086 9.56318 24.0655 6.16053 24.0655C2.75789 24.0655 0 21.3086 0 17.9085C0 14.5084 2.75921 11.7515 6.16053 11.7515C9.56186 11.7515 12.3184 14.507 12.3184 17.9085Z" fill="#FF0000"/>
+          <path d="M167.852 40.313C164.135 43.4142 158.826 44.9645 151.925 44.9645H138.702V67.7923H125.518V4.30566H152.787C159.073 4.30566 164.085 5.94239 167.823 9.21584C171.56 12.4893 173.429 17.5571 173.429 24.42C173.429 31.9143 171.57 37.2117 167.852 40.313ZM157.724 17.4423C156.044 16.0359 153.69 15.332 150.662 15.332H138.703V34.0247H150.662C153.69 34.0247 156.044 33.264 157.724 31.7414C159.405 30.2201 160.246 27.8076 160.246 24.5058C160.246 21.204 159.405 18.8495 157.724 17.4423Z" fill="white"/>
+          <path d="M183.317 4.30566H196.372V30.4642L220.909 4.30566H238.057L211.995 30.4161L239.393 67.7923H222.33L202.763 40.0794L196.372 46.5584V67.7923H183.317V4.30566Z" fill="white"/>
+          <path d="M292 4.30566V15.547H272.999V67.7916H259.643V15.5477H240.555V4.30566H292Z" fill="white"/>
+        </svg>
+      </a>
+
+      <div class="pkt-nav__links pkt-nav__links--end">
+        <a class="pkt-nav__link" href="/it/pkt/">Pkt</a>
+        <a class="pkt-nav__link" href="/it/packaging-solutions/">Packaging Solutions</a>
+        <a class="pkt-nav__link" href="/it/sostenibilita/">Sostenibilità</a>
+        <a class="pkt-nav__link" href="/it/feed/">Feed</a>
+        <a class="pkt-nav__link" href="/it/contatti/">Contatti</a>
+
+        <details class="pkt-lang">
+          <summary class="pkt-lang__current">IT</summary>
+          <ul class="pkt-lang__list">
+            <li><a href="/it/">Italiano</a></li>
+            <li><a href="/en/">English</a></li>
+            <li><a href="/de/">Deutsch</a></li>
+            <li><a href="/fr/">Français</a></li>
+          </ul>
+        </details>
+      </div>
+
+      <details class="pkt-burger">
+        <summary class="pkt-burger__toggle" aria-label="Apri il menu">Menu</summary>
+        <div class="pkt-burger__panel">
+          <a class="pkt-nav__link" href="/it/pkt/">Pkt</a>
+          <a class="pkt-nav__link" href="/it/packaging-solutions/">Packaging Solutions</a>
+          <a class="pkt-nav__link" href="/it/sostenibilita/">Sostenibilità</a>
+          <a class="pkt-nav__link" href="/it/feed/">Feed</a>
+          <a class="pkt-nav__link" href="/it/contatti/">Contatti</a>
+          <a class="pkt-nav__link" href="/en/">EN</a>
+          <a class="pkt-nav__link" href="/de/">DE</a>
+          <a class="pkt-nav__link" href="/fr/">FR</a>
+        </div>
+      </details>
+    </nav>
+
+    <div class="pkt-hero__body">
+      <h1 class="pkt-hero__title">Linee di<br class="pkt-br">confezionamento</h1>
+
+      <div class="pkt-hero__cols">
+        <p class="pkt-hero__subtitle">
+          Progettiamo e costruiamo macchine per il packaging dal 1985.
+        </p>
+        <p class="pkt-hero__description">
+          Dalla singola macchina alla linea completa, su specifica del cliente.
+        </p>
+      </div>
+    </div>
+  </header>
+  <!-- ================== END COMPONENT ================== -->
+
+  <p class="pv-caption">
+    <span class="pv-tag">placeholder</span>
+    Background is a CSS gradient standing in for the CMS image. Copy is placeholder Italian.
+  </p>
+
+  <div class="pv-notes">
+    <h2>Decisions I made where the spec was silent</h2>
+    <ul>
+      <li><strong>Absolute coordinates → ratios.</strong> Every value is <code>--canvas × ratio</code>, where <code>--canvas</code> is <code>min(100vw, 1874px)</code>. The proportions from Figma hold at 1440, 1280, or 390 wide — hardcoded x/y would have broken on every laptop.</li>
+      <li><strong>Two paddings unified.</strong> Nav inset computes to 37.5 (1874−1799 ÷ 2) and title x is 31. Six pixels apart, almost certainly not intentional — both are now <code>--pad</code> at 2%. Say the word if the difference is real.</li>
+      <li><strong>Font.</strong> <code>Apfel Grotezk</code> is declared first but no file exists, so it falls back to Helvetica. Drop the <code>.woff2</code> in and add one <code>@font-face</code> — nothing else changes. <em>It is a commercial font: PKT needs a webfont licence.</em></li>
+      <li><strong>Title anchored to the bottom</strong> rather than pinned at <code>y:496</code>, since hero height "varies based on background height". Content grows upward from the baseline instead of overlapping the nav on short viewports.</li>
+      <li><strong>Mobile (&lt;900px)</strong> was unspecified: links collapse into a native <code>&lt;details&gt;</code> menu, columns stack. No JavaScript — the zero-JS rule holds.</li>
+      <li><strong>Hover and focus</strong> were unspecified: a red underline on both, matching the logo's <code>#FF0000</code>. Focus is visible for keyboard users.</li>
+      <li><strong>"Pkt" moved into the right-hand group</strong>, as its first item. Note that <code>pkt</code> and <code>packaging_solutions</code> are now both at <code>x:992</code> in the spec — the others kept their old coordinates, so the collision is presumably just un-updated numbers. Flex spacing handles it either way, but confirm the order is Pkt → Packaging Solutions → Sostenibilità → Feed → Contatti.</li>
+    </ul>
+  </div>
+</div>

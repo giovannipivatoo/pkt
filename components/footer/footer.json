@@ -1,0 +1,136 @@
+{
+    "W": 1920,
+    "H": 943,
+    "background": "000000",
+    "background_detail": {
+        "src": "logo_outline.svg",
+        "W": 1313,
+        "H": 717,
+        "position": {
+            "x": 673,
+            "y": 0
+        },
+        "color": {
+            "color": "FF0000",
+            "opacity": 0.6
+        }
+    },
+    "left_section": {
+        "x": 71,
+        "logo": {
+            "src": "logo.svg",
+            "W": 292,
+            "H": 68,
+            "y": 208
+        },
+        "paragraph": {
+            "text": "Radicati nell'ingegneria, spinti dalla ricerca continua e dall'innovazione. Ogni giorno progettiamo macchine e linee per l'imballaggio che rendono la produzione più semplice, più efficiente e più sostenibile.",
+            "char_size": 18,
+            "font": "Apfel Grotezk",
+            "y": 326
+        },
+
+        "details": {
+            "company_name" : {
+                "text": "PKT s.r.l.",
+                "char_size": 18,
+                "font": "Apfel Grotezk",
+                "font_style": "Mittel",
+                "y": 533,
+                "color": "FFFFFF"
+            },
+            "address" : {
+                "text": "Via Marco Biagi, 28",
+                "char_size": 18,
+                "font": "Apfel Grotezk",
+                "y": "under company_name",
+                "color": "FFFFFF"
+            },
+            "city" : {
+                "text": "31037 - Castione di Loria",
+                "char_size": 18,
+                "font": "Apfel Grotezk",
+                "font_style": "Mittel",
+                "y": "under address",
+                "color": "FFFFFF"
+            },
+            "phone" : {
+                "text": "Tel: +39 0423 750 111",
+                "char_size": 18,
+                "font": "Apfel Grotezk",
+                "font_style": "Mittel",
+                "y": "under city",
+                "color": "FFFFFF"
+            },
+            "fax" : {
+                "text": "Fax: +39 0423 750 112",
+                "char_size": 18,
+                "font": "Apfel Grotezk",
+
+                "font_style": "Mittel",
+                "y": "under phone",
+                "color": "FFFFFF"
+            },
+            "p.iva" : {
+                "text": "P.IVA IT04121990289",
+                "char_size": 18,
+                "font": "Apfel Grotezk",
+                "font_style": "Mittel",
+                "y": "under fax",
+                "color": "696969"
+            },
+            "linkdin" : {
+                "src": "linkedin_logo.svg",
+                "W": 24,
+                "H": 24,
+                "y": "852",
+                "color": "FFFFFF",
+                "text_on_the_right": {
+                    "text": "pkt-technology",
+                    "char_size": 18,
+                    "font": "Apfel Grotezk",
+                    "font_style": "Regular",
+                    "y": "852",
+                    "color": "FFFFFF"
+                }
+            }
+        }
+    },
+    "right_section": {
+        "x": 1089,
+        "y": 536,
+        "links": {
+            "style": {
+                "char_size": 40,
+                "font": "Apfel Grotezk",
+                "font_style": "Regular",
+                "color": "FFFFFF"
+            },
+            "line_separator": {
+                "color": "696969",
+                "width": 1,
+                "W": 792
+            },
+            "children": [
+                "Pkt",
+                "Packaging Solutions",
+                "Feed",
+                "Contattti"
+            ]  
+        },
+        "details": {
+            "y": 857,
+            "anchor": "right alligned with line separator",
+            "style": {
+                "char_size": 18,
+                "font": "Apfel Grotezk",
+                "font_style": "Regular",
+                "color": "696969"
+            },
+            "links": [
+                "Privacy Policy",
+                "Cookie Policy"
+            ]
+        }
+    }
+}

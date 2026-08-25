@@ -1,0 +1,37 @@
+{
+    "background": "image that could vary",
+    "background_filter": {
+        "color": "000000",
+        "opacity": 0.42
+    },
+    "W": 1874, 
+    "H": "varies based on background height",
+    "corner_radius": 45,
+    "title": {
+        "text": "Dependent on the page",
+        "char_size": 204,
+        "font": "Apfel Grotezk",
+        "position": {
+            "x": 31,
+            "y": 496
+        }
+    },
+    "subtitle": {
+        "text": "Dependent on the page",
+        "char_size": 30,
+        "font": "Apfel Grotezk",
+        "position": {
+            "x": "title.position.x",
+            "y": "title.position.y + offset"
+        }
+    },
+    "description": {
+        "text": "Dependent on the page",
+        "char_size": 30,
+        "font": "Apfel Grotezk",
+        "position": {
+            "x": "1336",
+            "y": "title.position.y + offset"
+        }
+    }
+}
