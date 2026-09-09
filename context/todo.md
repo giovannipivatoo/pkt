@@ -63,7 +63,8 @@ Roughly dependency-ordered. Don't start further down until the thing above is re
 
 - [x] Astro static preview of home, company, sustainability, feed, catalog and FPK24.
 - [x] SocialPost approved by the user for static Figma sample posts.
-- [ ] Replace Figma social sample copy and confirm the gray FPK24 catalog placeholder.
+- [ ] Replace Figma social sample copy.
+- [x] Correct the FPK24 catalog placeholder using the FPK44 layout; all machine arrows temporarily link to FPK24 detail, as requested.
 - [ ] Supply remaining category/detail designs; catalog root currently reuses the supplied confezionatrici design.
 - [ ] Connect approved CMS content and human translations; the preview currently uses Italian fallback copy.
 - [ ] Activate contact submission only after the email and privacy prerequisites above are resolved.

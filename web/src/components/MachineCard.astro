@@ -1,7 +1,7 @@
 ---
-const {name, subtitle, text, image, side = 'left', href, crop = '', muted = false} = Astro.props;
+const {name, subtitle, text, image, side = 'left', href, crop = ''} = Astro.props;
 ---
-<article class:list={['pkt-mcard', `pkt-mcard--${side}`, {muted}]}>
+<article class:list={['pkt-mcard', `pkt-mcard--${side}`]}>
   <div class="pkt-mcard__media">{image && <img src={image} alt={name} style={crop} loading="lazy" />}</div>
   <div class="pkt-mcard__details"><h2>{name}</h2><p class="pkt-mcard__subtitle">{subtitle}</p><a class="pkt-mcard__more" href={href} aria-label={`Scopri ${name}`}><p>{text}</p><img src="/images/arrow.svg" width="54" height="55" alt="" /></a></div>
 </article>
