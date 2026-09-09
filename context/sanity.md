@@ -9,6 +9,9 @@ have been implemented. Sanity is the selected CMS, not an alternative under revi
 
 ## Confirmed by the user
 
+- The CMS will supply both machine-type pages (`Category`) and individual machine
+  detail pages (`Machine`). Until a category page exists, show its name without a
+  link in the header and home cards; do not redirect it to an unrelated page.
 - A machine belongs to **one category**.
 - Technical specifications are **free label/value rows per machine**, not a fixed
   set of fields per category or normalized numeric data for comparisons.

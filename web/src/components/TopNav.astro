@@ -2,10 +2,45 @@
 import { locales } from '../../../locales';
 const {lang = 'it', path = ''} = Astro.props;
 const links = [['Pkt','pkt/'], ['Packaging Solutions','packaging-solutions/'], ['Sostenibilità','sustainability/'], ['Feed','feed/'], ['Contatti','#contact']];
+const categories = [
+  ['Confezionatrici Verticali', 'packaging-solutions/confezionatrici/'],
+  ['Confezionatrici Orizzontali', null],
+  ['Presse', null],
+];
 ---
 <nav class="pkt-nav" aria-label="Navigazione principale">
   <a class="pkt-nav__logo" href={`/${lang}/`} aria-label="PKT — homepage"><img src="/images/logo.svg" alt="PKT" width="292" height="68" /></a>
-  <div class="pkt-nav__links">{links.map(([label,href]) => <a href={href.startsWith('#') ? href : `/${lang}/${href}`}>{label}</a>)}</div>
+  <div class="pkt-nav__links">{links.map(([label,href]) => href === 'packaging-solutions/' ? (
+    <div class="pkt-catalog-nav">
+      <a href={`/${lang}/${href}`}>{label}</a>
+      <ul class="pkt-catalog-nav__items" aria-label="Categorie Packaging Solutions">
+        {categories.map(([name,target]) => <li>{target ? <a href={`/${lang}/${target}`}>{name}</a> : <span>{name}</span>}</li>)}
+      </ul>
+    </div>
+  ) : <a href={href.startsWith('#') ? href : `/${lang}/${href}`}>{label}</a>)}</div>
   <details class="pkt-lang" name="header-menu"><summary>{lang.toUpperCase()}</summary><ul>{locales.map(locale => <li><a href={`/${locale}/${path}`} lang={locale}>{locale.toUpperCase()}</a></li>)}</ul></details>
-  <details class="pkt-mobile-nav" name="header-menu"><summary>Menu</summary><div>{links.map(([label,href]) => <a href={href.startsWith('#') ? href : `/${lang}/${href}`}>{label}</a>)}</div></details>
+  <details class="pkt-mobile-nav" name="header-menu"><summary>Menu</summary><div>{links.map(([label,href]) => <>
+    <a href={href.startsWith('#') ? href : `/${lang}/${href}`}>{label}</a>
+    {href === 'packaging-solutions/' && <ul class="pkt-mobile-nav__categories" aria-label="Categorie Packaging Solutions">{categories.map(([name,target]) => <li>{target ? <a href={`/${lang}/${target}`}>{name}</a> : <span>{name}</span>}</li>)}</ul>}
+  </>)}</div></details>
 </nav>
+
+<style>
+  .pkt-nav { z-index: 3; }
+  .pkt-catalog-nav { position: relative; }
+  .pkt-catalog-nav__items {
+    position: absolute; top: 100%; left: -20rem;
+    min-width: max-content; margin: 0; padding: 14rem 20rem;
+    list-style: none; background: #292929; border-radius: 12rem;
+    visibility: hidden; pointer-events: none;
+  }
+  .pkt-catalog-nav:hover .pkt-catalog-nav__items,
+  .pkt-catalog-nav:focus-within .pkt-catalog-nav__items { visibility: visible; pointer-events: auto; }
+  .pkt-catalog-nav__items a,.pkt-catalog-nav__items span { display: block; padding: 8rem 0; }
+  .pkt-catalog-nav__items span,.pkt-mobile-nav__categories span { color: #bbb; }
+  .pkt-mobile-nav__categories { list-style: none; margin: -6rem 0 0; padding: 0 0 0 12rem; border-left: 1px solid #616161; font-size: 14rem; line-height: 1.4; }
+  .pkt-mobile-nav__categories li + li { margin-top: 12rem; }
+  @media(max-width:760px) {
+    .pkt-mobile-nav > div { width: min(280px, calc(100vw - 64px)); max-height: min(420px, calc(100dvh - 120px)); overflow-y: auto; }
+  }
+</style>

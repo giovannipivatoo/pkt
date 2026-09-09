@@ -70,6 +70,9 @@ Roughly dependency-ordered. Don't start further down until the thing above is re
 
 ## Visual preview — 2026-09-09
 
+- [x] Packaging Solutions hover/focus submenu and mobile category list: Verticali,
+      Orizzontali, Presse. Home's second card corrected to Confezionatrici Orizzontali.
+      Orizzontali and Presse remain unlinked until their category pages exist.
 - [x] User authorized temporary direct LinkedIn embeds on the public GitHub Pages preview. Enabled only through `PKT_LINKEDIN_PREVIEW=true` (and local development); production consent remains required.
 - [x] Layout audit: mobile heading clipping, mobile sample-post headers, overlapping open navigation menus, and FPK24 gallery arrow placement corrected. Verified 91 page/viewport combinations, 40 image assets, and 98 internal links/anchors; reproducible check in `web/scripts/verify-layout.mjs`.
 - [x] Astro static preview of home, company, sustainability, feed, catalog and FPK24.

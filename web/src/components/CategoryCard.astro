@@ -1,7 +1,8 @@
 ---
 const {title, image, href, crop = '', gallery = false} = Astro.props;
+const Tag = href ? 'a' : 'div';
 ---
-<a class:list={['pkt-cat', {gallery}]} href={href}>
+<Tag class:list={['pkt-cat', {gallery}]} href={href}>
   <div class="pkt-cat__media"><img src={image} alt={title} style={crop} loading="lazy" /></div>
   {!gallery && <h3>{title}</h3>}
-</a>
+</Tag>

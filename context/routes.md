@@ -28,6 +28,10 @@ The URL map for pkt.it. Also the routing spec for the Astro `src/pages/[lang]/â€
 
 ### Dynamic segments
 
+- Header and home preview categories: Confezionatrici Verticali links to the existing
+  `confezionatrici/` page; Confezionatrici Orizzontali and Presse are text only until
+  their pages exist. The user confirmed CMS-backed type and individual-machine
+  pages; the missing categories' slugs and designs remain to be defined.
 - `[type]` = a `Category` slug (the "machine type", e.g. `confezionatrici`).
   `getStaticPaths` = locales Ã— categories.
 - `[machine]` = a `Machine` slug within that category.
