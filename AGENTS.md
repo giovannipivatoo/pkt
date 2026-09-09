@@ -37,6 +37,9 @@ These came out of a design interview. Don't quietly trade them away.
    LinkedIn widget sets third-party cookies (decided 2026-07-23), so a prior-consent
    cookie banner is required site-wide and must block that widget until consent. This
    is the one place cookies enter; don't add more.
+   Temporary exception approved 2026-09-09: the GitHub Pages visual preview may load
+   LinkedIn embeds directly via `PKT_LINKEDIN_PREVIEW=true`. This does not waive
+   prior consent for the production pkt.it launch.
 5. **Human translation only.** No automatic AI translation into the CMS.
 
 ## Locales

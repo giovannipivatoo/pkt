@@ -1,0 +1,12 @@
+---
+interface Props {
+  position: number;
+  eager?: boolean;
+}
+const {position, eager = false} = Astro.props;
+---
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7492627780170346496" width="504" height="946" loading={eager ? 'eager' : 'lazy'} allowfullscreen title={`Post LinkedIn ${position} — testo completo`} />
+
+<style>
+  iframe { display: block; width: 100%; border: 0; }
+</style>

@@ -27,6 +27,11 @@ jobs:
         working-directory: web
       - run: npm run build
         working-directory: web
+        env:
+          PKT_LINKEDIN_PREVIEW: 'true'
+      - name: Verify preview feed embeds
+        run: node scripts/verify-feed.mjs --preview --build-only
+        working-directory: web
       - name: Prepare project URLs and verify output
         run: node scripts/pages.mjs
         working-directory: web

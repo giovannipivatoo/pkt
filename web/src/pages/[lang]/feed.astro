@@ -3,13 +3,42 @@ import {locales} from '../../../../locales';
 import Page from '../../layouts/Page.astro';
 import Hero from '../../components/Hero.astro';
 import SocialPost from '../../components/SocialPost.astro';
+import LinkedInPost from '../../components/LinkedInPost.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Footer from '../../components/Footer.astro';
 export function getStaticPaths(){return locales.map(lang=>({params:{lang}}));}
 const {lang}=Astro.params;
+// Temporary direct embeds are authorized for local and GitHub Pages previews.
+const linkedInPreview = import.meta.env.DEV || import.meta.env.PKT_LINKEDIN_PREVIEW === 'true';
 ---
 <Page title="Social feed" lang={lang}>
   <Hero lang={lang} path="feed/" kind="short feed" title="Social feed" image="/images/feed-asset-7.jpg"/>
-  <main id="main" class="feed-content"><div class="feed-grid">{Array.from({length:16},(_,i)=><div class="social-pair"><SocialPost singleImage={i%4===1}/><SocialPost compact/></div>)}</div><p class="feed-more">...</p></main>
+  {linkedInPreview ? (
+    <main id="main" class="linkedin-feed">
+      <div class="linkedin-feed__featured">
+        <LinkedInPost position={1} eager />
+      </div>
+      <div class="linkedin-feed__grid">
+        {Array.from({length:8},(_,i)=><LinkedInPost position={i+2} eager={i<2} />)}
+      </div>
+    </main>
+  ) : (
+    <main id="main" class="feed-content"><div class="feed-grid">{Array.from({length:16},(_,i)=><div class="social-pair"><SocialPost singleImage={i%4===1}/><SocialPost compact/></div>)}</div><p class="feed-more">...</p></main>
+  )}
   <ContactForm/><Footer lang={lang}/>
 </Page>
+
+<style>
+  .linkedin-feed { max-width: 1328px; margin: 0 auto; padding: 64px 32px 96px; }
+  .linkedin-feed__featured { max-width: 1264px; margin: 0 auto 64px; }
+  .linkedin-feed__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 400px)); justify-content: center; gap: 32px; }
+  @media (max-width: 1199px) {
+    .linkedin-feed__featured { max-width: 832px; }
+    .linkedin-feed__grid { grid-template-columns: repeat(2, minmax(0, 400px)); }
+  }
+  @media (max-width: 760px) {
+    .linkedin-feed { padding: 40px 16px 64px; }
+    .linkedin-feed__featured { max-width: 400px; margin-bottom: 40px; }
+    .linkedin-feed__grid { grid-template-columns: minmax(0, 400px); gap: 24px; }
+  }
+</style>
