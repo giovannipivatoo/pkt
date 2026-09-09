@@ -1,0 +1,18 @@
+---
+import {locales} from '../../../../../locales';
+import Page from '../../../layouts/Page.astro';
+import Hero from '../../../components/Hero.astro';
+import MachineCard from '../../../components/MachineCard.astro';
+import ContactForm from '../../../components/ContactForm.astro';
+import Footer from '../../../components/Footer.astro';
+export function getStaticPaths(){return locales.flatMap(lang=>[undefined,'confezionatrici'].map(type=>({params:{lang,type}})));}
+const {lang,type}=Astro.params;
+const detail=`/${lang}/packaging-solutions/confezionatrici/fpk-24/`;
+---
+<Page title="Confezionatrici verticali" lang={lang}>
+  <Hero kind="short products" lang={lang} path={`packaging-solutions/${type ? type+'/' : ''}`} image="/images/products-imgChatGptImage13Lug20261425332.png" title="CONFEZIONATRICI VERTICALI" subtitle="Infinite soluzioni di confezionamento" description="Le confezionatrici verticali FPK sono il risultato di anni di esperienza e innovazione, e sono altamente referenziate nel mercato delle soluzioni di confezionamento."/>
+  <main id="main"><p class="intro products-intro">La semplicità e i bassi costi di gestione sono i vantaggi chiave delle confezionatrici PKT, insieme alla flessibilità di gestire molti prodotti diversi, come: pellet, pet food, mangimi, cereali, pasta corta, farine, sabbia, inerti, fertilizzanti chimici, fertilizzanti organici, torba, terriccio, materie plastiche, ecc...<br/>Le macchine sono disponibili in acciaio verniciato o in acciaio inox.</p>
+  <div class="products-list"><MachineCard muted name="FPK 24" subtitle={'Oltre la carta:\nla rivoluzione del sottovuoto impermeabile'} text="Nel settore del confezionamento industriale, l'umidità è da sempre il nemico numero uno. PKT risponde a questa sfida introducendo una soluzione innovativa progettata specificamente per i mercati in cui il controllo ambientale è critico." href={detail}/>
+  <MachineCard side="right" name="FPK 42" subtitle="Grandi prestazioni in dimensioni compatte." text="FPK42 è la soluzione entry-level ideale per formati da 1 a 5 kg. Velocità fino a 60 sacchi al minuto, massima integrazione e precisione assoluta per il settore alimentare e pet-food." image="/images/products-imgFpk421.png" crop="position:absolute;max-width:none;width:207.79%;height:199.05%;left:-16.77%;top:-17.63%" href="#contact"/>
+  <MachineCard name="FPK 44" subtitle="Il nostro bestseller. La vostra soluzione su misura." text="FPK44 è la confezionatrice verticale mid-range più scelta del mercato. Totalmente configurabile e compatibile con ogni sistema di dosaggio, è progettata per cucirsi millimetricamente sulle vostre esigenze di produzione." image="/images/products-imgFpk44Part11.png" crop="position:absolute;max-width:none;width:139.5%;height:227.22%;left:-23.48%;top:-12.43%" href="#contact"/></div><p class="products-more">....</p></main><ContactForm/><Footer lang={lang}/>
+</Page>

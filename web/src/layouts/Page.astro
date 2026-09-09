@@ -1,0 +1,5 @@
+---
+import '../styles/global.css';
+const {title, lang = 'it', pageClass = ''} = Astro.props;
+---
+<!doctype html><html lang={lang}><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content="noindex,nofollow"/><title>{title} — PKT</title><link rel="preload" href="/fonts/ApfelGrotezk-Mittel.woff2" as="font" type="font/woff2" crossorigin/><link rel="icon" href="/images/logo.svg" type="image/svg+xml"/></head><body class={pageClass}><a class="skip-link" href="#main">Salta al contenuto</a><slot/></body></html>

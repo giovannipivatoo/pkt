@@ -1,0 +1,21 @@
+---
+import {locales} from '../../../../locales';
+import Page from '../../layouts/Page.astro';
+import Hero from '../../components/Hero.astro';
+import CategoryCard from '../../components/CategoryCard.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+export function getStaticPaths(){return locales.map(lang=>({params:{lang}}));}
+const {lang}=Astro.params;
+const services=[['Progettazione Sartoriale','Sviluppiamo soluzioni su misura modellate sulle specifiche esigenze del tuo prodotto e del tuo spazio produttivo.'],['Flessibilità e Avanguardia','Integriamo tecnologie di ultima generazione per garantire flessibilità operativa e massima efficienza energetica.'],['Post vendita','Un servizio di assistenza tecnica tempestivo e un magazzino ricambi efficiente per ridurre al minimo i tempi di fermo macchina.'],['Consulenza','Una rete di vendita tecnica preparata per guidarti nella scelta della configurazione ottimale.']];
+---
+<Page title="Pkt" lang={lang}>
+  <Hero kind="about" lang={lang} path="pkt/" image="/images/about-imgPktHeadquarter42.png" title={'l’ingegneria\ndel packaging\nsu misura.'} subtitle="Dall’idea alla linea completa" description="Macchine e linee complete per l'imballaggio industriale"/>
+  <main id="main"><p class="intro about-intro">In PKT non ci limitiamo a costruire macchine: creiamo soluzioni di imballaggio integrate. La nostra filosofia ruota attorno a due pilastri fondamentali: la ricerca costante e la semplicità d’uso.</p>
+    <section class="about-line"><img src="/images/about-imgLineapalLogoRender1.png" alt="Linea completa di confezionamento PKT" loading="lazy"/><h2>dall’idea alla linea<br/>completa</h2></section>
+    <section class="about-innovation"><h2>Innovazione</h2><img src="/images/about-imgPktSacchetto200907290051.png" alt="Sacco PKT a doppia maniglia" loading="lazy"/><p>La dimostrazione concreta di questo approccio sono brevetti e soluzioni rivoluzionarie come il sacco a doppia maniglia e il bi-bag — risposte reali a reali esigenze di mercato, costantemente aggiornate per anticipare i trend del settore.</p></section>
+    <section class="about-services">{services.map(([title,text])=><article><h2>{title}</h2><p>{text}</p></article>)}</section>
+    <section class="about-gallery"><h2>Inside PKT</h2><div class="gallery-area"><div class="gallery-arrows"><a href="#inside-3" aria-label="Foto successive"><img src="/images/arrow.svg" alt=""/></a><a href="#inside-1" aria-label="Foto precedenti"><img src="/images/arrow.svg" alt=""/></a></div><div class="gallery-strip"><div id="inside-1"><CategoryCard gallery title="Lavorazione in officina" image="/images/about-imgPkt182.png" href="/images/about-imgPkt182.png" crop="width:220.18%;height:204%;max-width:none;position:absolute;left:-92.72%;top:-89.66%"/></div><CategoryCard gallery title="Stabilimento PKT" image="/images/about-imgPkt171.png" href="/images/about-imgPkt171.png" crop="width:166.92%;height:154.64%;max-width:none;position:absolute;left:-33.38%;top:-32.91%"/><div id="inside-3"><CategoryCard gallery title="Tecnologia PKT" image="/images/about-imgPkt311.png" href="/images/about-imgPkt311.png" crop="width:129.59%;height:120%;max-width:none;position:absolute;left:-54.93%;top:-5.7%"/></div></div></div></section>
+    <section class="about-partnership"><h2>Oltre le macchine</h2><div><p>Scegliere PKT non significa semplicemente acquistare un macchinario industriale, ma avviare una partnership strategica basata sulla fiducia, sulla trasparenza e sulla condivisione degli obiettivi. Sappiamo che ogni linea di produzione è il cuore pulsante di un'azienda: per questo non vi lasciamo mai soli.</p><p>Dal primo bozzetto su carta fino al collaudo finale e all'assistenza quotidiana sul campo, il nostro team è al vostro fianco per garantire che ogni imballaggio sia perfetto, ogni processo sia ottimizzato e ogni investimento generi valore concreto nel tempo.</p><p>Guardiamo al futuro del packaging, insieme.</p></div></section>
+  </main><ContactForm/><Footer lang={lang}/>
+</Page>

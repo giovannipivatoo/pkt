@@ -1,0 +1,15 @@
+---
+import {locales} from '../../../../locales';
+import Page from '../../layouts/Page.astro';
+import Hero from '../../components/Hero.astro';
+import SocialPost from '../../components/SocialPost.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+export function getStaticPaths(){return locales.map(lang=>({params:{lang}}));}
+const {lang}=Astro.params;
+---
+<Page title="Social feed" lang={lang}>
+  <Hero lang={lang} path="feed/" kind="short feed" title="Social feed" image="/images/feed-asset-7.jpg"/>
+  <main id="main" class="feed-content"><div class="feed-grid">{Array.from({length:16},(_,i)=><div class="social-pair"><SocialPost singleImage={i%4===1}/><SocialPost compact/></div>)}</div><p class="feed-more">...</p></main>
+  <ContactForm/><Footer lang={lang}/>
+</Page>

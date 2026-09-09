@@ -20,7 +20,7 @@ Nothing here should be guessed at. Ask.
 - [ ] **Recipient inbox** for contact form emails (`info@`, `sales@`, …).
 - [ ] **The old pkt.it.** Which content carries over? Which URLs must keep working
       (301 redirects)? Losing existing rankings on a cutover is the classic own-goal.
-- [ ] **Figma file** — the design source. Needed before any component work.
+- [x] **Figma file** — supplied and inspected 2026-09-09 (`eynZ4rWjULZ5E6HhqDTU7U`). All six page mockups implemented as a local visual preview in `web/`.
 - [ ] **Content and component structure** — user will specify.
 - [ ] **Category and machine list** — real names, real counts.
 - [ ] Machine page fields: spec table format? PDF datasheets? video? photo gallery?
@@ -58,3 +58,16 @@ Roughly dependency-ordered. Don't start further down until the thing above is re
 8. Contact form endpoint + Resend + honeypot.
 9. Studio URL, custom domain, redirects from the old site, `hreflang`, sitemap.
 10. Hand editors a short guide for Sanity Studio.
+
+## Visual preview — 2026-09-09
+
+- [x] Astro static preview of home, company, sustainability, feed, catalog and FPK24.
+- [x] SocialPost approved by the user for static Figma sample posts.
+- [ ] Replace Figma social sample copy and confirm the gray FPK24 catalog placeholder.
+- [ ] Supply remaining category/detail designs; catalog root currently reuses the supplied confezionatrici design.
+- [ ] Connect approved CMS content and human translations; the preview currently uses Italian fallback copy.
+- [ ] Activate contact submission only after the email and privacy prerequisites above are resolved.
+
+See `web/README.md` for preview routes and intentional limitations.
+- [x] GitHub Actions configuration for a shareable Pages preview (requested 2026-09-09).
+- [ ] Enable GitHub Pages: API returned HTTP 422 because the current plan does not support Pages for this private repository. Requires an eligible plan or owner approval to change repository visibility.

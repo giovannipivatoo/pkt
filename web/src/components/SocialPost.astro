@@ -1,0 +1,8 @@
+---
+const {compact = false, singleImage = false} = Astro.props;
+---
+<article class:list={['social-post', {'social-post--compact':compact}]} aria-label="Post dimostrativo dal mockup Figma">
+  <header><img class="social-avatar" src={compact ? '/images/feed-asset-0.jpg' : '/images/social-avatar.svg'} alt="" loading="lazy"/><div><p>{compact ? 'Stephen Smith' : 'PKT Technologies'} <span>· 20 min</span></p><small>{compact ? 'Software Developer | Boston University' : 'Macchine e linee complete per l’imballaggio industriale'}</small></div><img class="social-ellipsis" src="/images/social-ellipsis.svg" alt=""/></header>
+  {compact ? <p class="social-copy">📚 Just conquered algorithms &amp; data structures! 🎉 Time for a breather. Suggestions for a binge-worthy show? 🍿 #StudyBreak #NetflixTime</p> : <><p class="social-copy">🖥 Need some desk setup inspo?<br/><br/>👀 Check out my cozy study corner! Loving the minimalist vibes and natural lighting.</p><div class:list={['social-images',{'social-images--single':singleImage}]}>{singleImage ? <img src="/images/feed-asset-6.png" alt="Impianto di pallettizzazione PKT" loading="lazy"/> : <><div><img src="/images/feed-asset-2.jpg" alt="Dettaglio della confezionatrice" loading="lazy"/></div><div><img src="/images/feed-asset-4.jpg" alt="Sacco confezionato sulla linea PKT" loading="lazy"/></div></>}</div></>}
+  <footer aria-label="Statistiche illustrative"><span><img src="/images/social-heart.svg" alt="Mi piace"/>1.6 k</span><span><img src="/images/social-comment.svg" alt="Commenti"/>200</span><img class="social-share" src="/images/social-share.svg" alt=""/><img src={`/images/social-bookmark${compact ? '-active' : ''}.svg`} alt=""/></footer>
+</article>

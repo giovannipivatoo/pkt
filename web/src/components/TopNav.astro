@@ -1,0 +1,11 @@
+---
+import { locales } from '../../../locales';
+const {lang = 'it', path = ''} = Astro.props;
+const links = [['Pkt','pkt/'], ['Packaging Solutions','packaging-solutions/'], ['Sostenibilità','sustainability/'], ['Feed','feed/'], ['Contatti','#contact']];
+---
+<nav class="pkt-nav" aria-label="Navigazione principale">
+  <a class="pkt-nav__logo" href={`/${lang}/`} aria-label="PKT — homepage"><img src="/images/logo.svg" alt="PKT" width="292" height="68" /></a>
+  <div class="pkt-nav__links">{links.map(([label,href]) => <a href={href.startsWith('#') ? href : `/${lang}/${href}`}>{label}</a>)}</div>
+  <details class="pkt-lang"><summary>{lang.toUpperCase()}</summary><ul>{locales.map(locale => <li><a href={`/${locale}/${path}`} lang={locale}>{locale.toUpperCase()}</a></li>)}</ul></details>
+  <details class="pkt-mobile-nav"><summary>Menu</summary><div>{links.map(([label,href]) => <a href={href.startsWith('#') ? href : `/${lang}/${href}`}>{label}</a>)}</div></details>
+</nav>

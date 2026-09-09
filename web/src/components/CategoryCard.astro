@@ -1,0 +1,7 @@
+---
+const {title, image, href, crop = '', gallery = false} = Astro.props;
+---
+<a class:list={['pkt-cat', {gallery}]} href={href}>
+  <div class="pkt-cat__media"><img src={image} alt={title} style={crop} loading="lazy" /></div>
+  {!gallery && <h3>{title}</h3>}
+</a>

@@ -1,0 +1,12 @@
+---
+const {lang = 'it'} = Astro.props;
+---
+<footer class="pkt-footer">
+  <img class="pkt-footer__outline" src="/images/outline.svg" alt="" width="1313" height="717" />
+  <a class="pkt-footer__logo" href={`/${lang}/`}><img src="/images/logo.svg" alt="PKT" width="292" height="68" /></a>
+  <p class="pkt-footer__description">Radicati nell'ingegneria, spinti dalla ricerca continua e dall'innovazione.<br/>Ogni giorno progettiamo macchine e linee per l'imballaggio che rendono la produzione più semplice, più efficiente e più sostenibile.</p>
+  <address>PKT s.r.l.<br/>Viale Marco Biagi, 28<br/>31037 - I Castione di Loria (TV)<br/><a href="tel:+3904231996303">Tel.: +39.0423.1996303</a><br/>Fax.: +39.0423.1996306<br/><span>P.IVA IT04121990289</span></address>
+  <nav aria-label="Navigazione piè di pagina"><a href={`/${lang}/pkt/`}>Pkt<img src="/images/send.svg" alt="" width="20" height="20" /></a><a href={`/${lang}/packaging-solutions/`}>Packaging Solutions</a><a href={`/${lang}/feed/`}>Feed</a><a href="#contact">Contatti</a></nav>
+  <a class="pkt-footer__social" href="https://www.linkedin.com/company/pkt-technology/"><img src="/images/linkedin.svg" width="24" height="24" alt="LinkedIn" />pkt-technology</a>
+  <div class="pkt-footer__legal"><span title="Servizio privacy da configurare">Privacy Policy</span><span title="Servizio cookie da configurare">Cookie Policy</span></div>
+</footer>

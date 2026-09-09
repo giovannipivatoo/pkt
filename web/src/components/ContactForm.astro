@@ -1,0 +1,12 @@
+---
+const {machine = false} = Astro.props;
+---
+<section class="pkt-contact" id="contact" aria-labelledby="contact-title">
+  <div class="pkt-contact__intro"><p>Contattaci</p><h2 id="contact-title">{machine ? <>TI INTERESSA UN<br/>MACCHINARIO<br/>COME QUESTO?</> : <>I GRANDI PROGETTI<br/>COMINCIANO SEMPRE<br/>CON UNA<br/>CONVERSAZIONE</>}</h2></div>
+  <form class="pkt-contact__form">
+    <div class="pkt-contact__fields"><label>Nome Cognome *<input name="name" autocomplete="name" required /></label><label>Azienda *<input name="company" autocomplete="organization" required /></label><label>E-mail*<input name="email" type="email" autocomplete="email" required /></label></div>
+    <label class="pkt-contact__message">Richiesta<textarea name="message" rows="4"></textarea></label>
+    <label class="pkt-contact__privacy"><input type="checkbox" required /> <span>Dichiaro di aver preso visione dell’<span class="policy" title="Servizio privacy da configurare">informativa privacy</span>*</span></label>
+    <button class="pill" type="button" disabled title="Anteprima: invio disponibile dopo la configurazione email e privacy">INVIA RICHIESTA<img src="/images/send.svg" width="20" height="20" alt="" /></button>
+  </form>
+</section>

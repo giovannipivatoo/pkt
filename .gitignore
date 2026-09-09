@@ -12,3 +12,5 @@ dist/
 *.log
 *.pem
 *.tsbuildinfo
+
+.astro/
