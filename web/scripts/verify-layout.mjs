@@ -50,6 +50,11 @@ try {
         const strip = await page.locator('.machine-gallery .gallery-strip').boundingBox();
         assert(arrows.x + arrows.width <= strip.x, 'Machine gallery arrows overlap photos');
       }
+      if (route === 'pkt/') {
+        const heading = await page.locator('.about-innovation > h2').boundingBox();
+        const image = await page.locator('.about-innovation > img').boundingBox();
+        assert(heading.y + heading.height <= image.y, 'Innovation photo covers its heading');
+      }
       result.assets.forEach(asset => assets.add(asset));
       result.links.forEach(link => links.add(link));
       if (result.errors.length) failures.push({width, path, errors: result.errors});

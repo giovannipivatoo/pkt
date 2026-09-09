@@ -55,17 +55,26 @@ The only PKT-owned dynamic thing on the public site.
 
 ## Content model (shape, not final)
 
+See `sanity.md` for the 2026-09-09 discussion, confirmed decisions, proposed document
+types, editorial limitations and unanswered questions. Studio schemas remain empty.
+
 Roughly 6–9 categories, each with up to ~6 machines → ~40–55 machine pages.
 
 - `Category` — name, slug, description, image, ordering
-- `Machine` — belongs to a category; name, slug, description, images, specs, downloads
-- `Page` — the fixed pages (home, about, sustainability, feed)
+- `Machine` — exactly one category; name, slug, description, images and free
+  label/value specification rows (confirmed 2026-09-09). Downloads/video/variants
+  remain to be confirmed.
+- `Page` — conceptual grouping for fixed pages. Separate singleton schemas were
+  proposed for each page; that schema breakdown is not finalized.
 - Every editorial text field is localized. Slugs are single across locales according
   to `routes.md`; the remaining stale question in `todo.md` must be resolved before
   schema work begins.
 
 Structure is defined by the developer. Editors fill fields; they never add or reorder
 page sections. Do not add a Sanity page-builder.
+
+Editors publish directly (confirmed 2026-09-09); no approval workflow requested.
+Editor count, plan and least-privilege roles remain open.
 
 ## i18n rules
 

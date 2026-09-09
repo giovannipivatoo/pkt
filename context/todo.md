@@ -21,9 +21,14 @@ Nothing here should be guessed at. Ask.
 - [ ] **The old pkt.it.** Which content carries over? Which URLs must keep working
       (301 redirects)? Losing existing rankings on a cutover is the classic own-goal.
 - [x] **Figma file** — supplied and inspected 2026-09-09 (`eynZ4rWjULZ5E6HhqDTU7U`). All six page mockups implemented as a local visual preview in `web/`.
-- [ ] **Content and component structure** — user will specify.
+- [ ] **Content and component structure** — finalize with the user. Proposed Sanity
+      documents and fixed-page singleton schemas are recorded in `sanity.md`;
+      they are not yet approved schemas.
 - [ ] **Category and machine list** — real names, real counts.
-- [ ] Machine page fields: spec table format? PDF datasheets? video? photo gallery?
+- [x] Machine category relationship: exactly one category (confirmed 2026-09-09).
+- [x] Machine spec table: free label/value rows per machine (confirmed 2026-09-09).
+- [ ] Remaining machine fields: confirm PDFs, video, variants, gallery requirements,
+      and whether downloadable files differ by language.
 - [ ] **Resolve the stale slug decision.** `routes.md` already specifies one slug in
       every locale, while the old content-model notes left it open. Confirm the
       single-slug rule before the Sanity schema is written.
@@ -33,6 +38,10 @@ Nothing here should be guessed at. Ask.
       subdomain, or a `/admin` route/proxy? Do not assume the old Payload rewrite.
 - [ ] **Sanity seats and plan.** Confirm the number of PKT editors and that the chosen
       plan/roles fit before inviting staff.
+- [x] **Publishing workflow:** editors can publish directly; no separate approver
+      requested (2026-09-09). This does not grant them project-admin privileges.
+- [ ] **Feed editorial controls:** approve the real post list, ordering, featured-post
+      selection and per-post heights before implementing the Sanity feed schema.
 
 ## To verify (developer, not the user)
 
@@ -48,13 +57,13 @@ Nothing here should be guessed at. Ask.
 Roughly dependency-ordered. Don't start further down until the thing above is real.
 
 1. ~~Create Sanity project + clean standalone `studio/`.~~ Done 2026-08-25.
-2. Scaffold `web/` (Astro static); decide and deploy the Studio URL.
+2. ~~Scaffold `web/` (Astro static).~~ Done; decide and deploy the Studio URL.
 3. Locale config + one localized document type end to end, to prove the i18n pattern
    before it's replicated 5 times.
-4. Content model: `Category`, `Machine`, `Page`. Structure locked by code.
+4. Finalize and implement the content model in `sanity.md`. Structure locked by code.
 5. Astro fetches at build time, generates static pages per locale.
 6. Deploy hook wiring: Sanity publish → site rebuild.
-7. Components from Figma.
+7. ~~Preview components from supplied Figma screens.~~ Done; remaining category/detail designs still pending.
 8. Contact form endpoint + Resend + honeypot.
 9. Studio URL, custom domain, redirects from the old site, `hreflang`, sitemap.
 10. Hand editors a short guide for Sanity Studio.
@@ -65,7 +74,10 @@ Roughly dependency-ordered. Don't start further down until the thing above is re
 - [x] Layout audit: mobile heading clipping, mobile sample-post headers, overlapping open navigation menus, and FPK24 gallery arrow placement corrected. Verified 91 page/viewport combinations, 40 image assets, and 98 internal links/anchors; reproducible check in `web/scripts/verify-layout.mjs`.
 - [x] Astro static preview of home, company, sustainability, feed, catalog and FPK24.
 - [x] SocialPost approved by the user for static Figma sample posts.
-- [ ] Replace Figma social sample copy.
+- [x] Replace static samples in the public preview with the supplied full LinkedIn
+      embed (commit `bc5fe11`, deployed successfully). Default non-preview builds
+      still use the old static samples until consent-backed production integration.
+- [ ] Replace the repeated LinkedIn test post with the approved real editorial feed.
 - [x] Correct the FPK24 catalog placeholder using the FPK44 layout; all machine arrows temporarily link to FPK24 detail, as requested.
 - [ ] Supply remaining category/detail designs; catalog root currently reuses the supplied confezionatrici design.
 - [ ] Connect approved CMS content and human translations; the preview currently uses Italian fallback copy.

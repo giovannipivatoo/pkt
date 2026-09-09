@@ -69,4 +69,8 @@ through the rendered website.
 The public site still sets no first-party cookies. Sanity Studio authentication is
 an editor-only service and does not justify adding cookies to public pages. The
 LinkedIn widget remains the sole public-site cookie exception and must stay blocked
-until prior consent.
+until prior consent for the production pkt.it launch. The owner explicitly approved
+temporary direct loading on the GitHub Pages visual preview on 2026-09-09. That
+exception is enabled through `PKT_LINKEDIN_PREVIEW=true` in its build workflow;
+ordinary builds do not enable embeds. See `routes.md` for the current feed and
+`sanity.md` for the proposed content model and publishing decisions.
