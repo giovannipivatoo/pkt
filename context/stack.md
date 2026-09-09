@@ -8,7 +8,7 @@ these, read the "why not" column first — it was already argued.
 - Sanity project: **pkt** (`85609dop`)
 - Sanity dataset: **production** (public)
 - Studio source: `studio/` in this repository; code-managed schemas are authoritative
-- GitHub repository: private `giovannipivatoo/pkt`
+- GitHub repository: public `giovannipivatoo/pkt` (owner approved 2026-09-09); GitHub Pages hosts the shareable visual preview.
 
 ## Decided
 

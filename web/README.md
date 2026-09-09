@@ -23,6 +23,6 @@ Before launch: complete the existing `../context/todo.md` CMS, translation, cons
 `.github/workflows/pages.yml` builds and deploys `web/` when changes reach `main`.
 It uses GitHub's Pages base path and `scripts/pages.mjs` to prefix generated HTML/CSS URLs and validate that assets and routes exist. This step adds no browser JavaScript. Local builds remain at `/`.
 
-Expected preview: https://giovannipivatoo.github.io/pkt/it/
+Shared preview: https://giovannipivatoo.github.io/pkt/it/
 
-Enable **Settings → Pages → Source: GitHub Actions**, then run **Deploy website preview**. As of 2026-09-09, GitHub rejected enabling Pages because the current account plan does not support Pages for this private repository. Publication requires an eligible plan or explicit owner approval to make the repository public.
+The owner approved making the repository public on 2026-09-09. GitHub Pages is enabled with **GitHub Actions** as its source. Run **Deploy website preview** to deploy manually.

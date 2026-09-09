@@ -70,4 +70,4 @@ Roughly dependency-ordered. Don't start further down until the thing above is re
 
 See `web/README.md` for preview routes and intentional limitations.
 - [x] GitHub Actions configuration for a shareable Pages preview (requested 2026-09-09).
-- [ ] Enable GitHub Pages: API returned HTTP 422 because the current plan does not support Pages for this private repository. Requires an eligible plan or owner approval to change repository visibility.
+- [x] Enable GitHub Pages: owner approved public repository visibility on 2026-09-09; Pages now uses GitHub Actions.
