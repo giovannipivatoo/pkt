@@ -5,6 +5,7 @@ import {getCatalog, text, imageUrl, categoryPath, machinePath, richText} from '.
 import Page from '../../../../layouts/Page.astro';
 import Hero from '../../../../components/Hero.astro';
 import CategoryCard from '../../../../components/CategoryCard.astro';
+import PhotoZoom from '../../../../components/PhotoZoom.astro';
 import ContactForm from '../../../../components/ContactForm.astro';
 import Footer from '../../../../components/Footer.astro';
 export async function getStaticPaths() {
@@ -46,5 +47,5 @@ const categoryUrl = `/${lang}/${categoryPath(category)}`;
       <a href={previous ? `/${lang}/${machinePath(previous, category)}` : categoryUrl}><img src="/images/arrow.svg" alt=""/>{previous ? 'Precedente' : text(category.name, lang)}</a>
       <a href={next ? `/${lang}/${machinePath(next, category)}` : categoryUrl}>{next ? 'Successivo' : text(category.name, lang)}<img src="/images/arrow.svg" alt=""/></a>
     </nav>
-  </main><ContactForm machine/><Footer lang={lang}/>
+  </main><ContactForm machine/><Footer lang={lang}/>{gallery.length > 0 && <PhotoZoom/>}
 </Page>

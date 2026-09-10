@@ -104,3 +104,7 @@ See `web/README.md` for preview routes and intentional limitations.
       validation prevents invalid category references or duplicate routes.
 - [x] Preview refresh workflow scheduled every ten minutes, plus manual dispatch.
 - [ ] Production Vercel integration, immediate publish hook and pkt.it cutover.
+
+- [x] Photo zoom requested 2026-09-10: machine and Inside PKT gallery links open a
+      native dialog with Esc/button/outside-click dismissal, retaining URL, scroll
+      position and focus. Small dedicated script; verified in Firefox.

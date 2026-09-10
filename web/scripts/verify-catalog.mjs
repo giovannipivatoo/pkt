@@ -31,7 +31,9 @@ for (const lang of locales) {
         assert(detail.includes(escape(text(row.label, lang))), 'Specification label missing');
         assert(detail.includes(escape(text(row.value, lang))), 'Specification value missing');
       }
-      assert(!/<script\b/i.test(detail), 'Machine pages must remain static');
+      const withoutZoom = detail.replace(/<script src="\/scripts\/photo-zoom\.js" defer><\/script>/g, '');
+      assert(!/<script\b/i.test(withoutZoom), 'Only the requested photo zoom script may run on machine pages');
+      if (machine.gallery?.length) assert(detail.includes('<dialog') && detail.includes('data-photo-zoom'), 'Gallery must support closing the zoom in place');
       assert(!detail.includes('.api.sanity.io'), 'CMS queries must not reach the browser');
       pages++;
     }

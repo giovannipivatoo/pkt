@@ -69,3 +69,16 @@ Failed builds leave the previous deployed site intact. Review failures in GitHub
 Actions. GitHub may disable scheduled workflows in public repositories after long
 periods without repository activity; production should use the planned publish
 webhook and Vercel deploy hook.
+
+## Photo zoom — 2026-09-10
+
+Gallery photos in machine details and Inside PKT open in a native modal dialog.
+Close with Esc, the close button or a click outside the image; the URL and scroll
+position are preserved and keyboard focus returns to the originating photo.
+`photo-zoom.js` is the small client-script exception requested by the user for this
+interaction. Ordinary category cards still navigate to category pages.
+
+Verified in Firefox: opening from click/Enter, closing with Esc, outside click and
+the close button, unchanged URL/scroll position, and restored keyboard focus.
+Build/catalog/feed/Pages URL checks pass with only the explicitly allowed gallery
+and zoom scripts.

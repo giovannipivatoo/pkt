@@ -2,7 +2,7 @@
 const {title, image, imageAlt = title, href, crop = '', gallery = false} = Astro.props;
 const Tag = href ? 'a' : 'div';
 ---
-<Tag class:list={['pkt-cat', {gallery}]} href={href}>
+<Tag class:list={['pkt-cat', {gallery}]} href={href} data-photo-zoom={gallery && href ? true : undefined} aria-haspopup={gallery && href ? 'dialog' : undefined}>
   <div class="pkt-cat__media">{image && <img src={image} alt={imageAlt} style={crop} loading="lazy" />}</div>
   {!gallery && <h3>{title}</h3>}
 </Tag>

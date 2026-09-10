@@ -18,7 +18,7 @@ assert.equal(prefix('<a href="https://example.com/">'), '<a href="https://exampl
 for (const file of files) {
   const path = join(root, file);
   const output = prefix(await readFile(path, 'utf8'));
-  const withoutGallery = output.replace(/<script src="[^"]*\/scripts\/gallery\.js" defer><\/script>/g, '');
+  const withoutGallery = output.replace(/<script src="[^"]*\/scripts\/(?:gallery|photo-zoom)\.js" defer><\/script>/g, '');
   assert(!/<script\b/i.test(withoutGallery), `Unexpected client script: ${file}`);
   for (const match of output.matchAll(/(?:\b(?:href|src)="|url\(['"]?)(\/[^"'\s)]+)/g)) {
     const url = match[1];

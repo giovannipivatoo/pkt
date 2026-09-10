@@ -3,6 +3,7 @@ import {locales} from '../../../../locales';
 import Page from '../../layouts/Page.astro';
 import Hero from '../../components/Hero.astro';
 import CategoryCard from '../../components/CategoryCard.astro';
+import PhotoZoom from '../../components/PhotoZoom.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Footer from '../../components/Footer.astro';
 export function getStaticPaths(){return locales.map(lang=>({params:{lang}}));}
@@ -19,4 +20,5 @@ const services=[['Progettazione Sartoriale','Sviluppiamo soluzioni su misura mod
     <section class="about-partnership"><h2>Oltre le macchine</h2><div><p>Scegliere PKT non significa semplicemente acquistare un macchinario industriale, ma avviare una partnership strategica basata sulla fiducia, sulla trasparenza e sulla condivisione degli obiettivi. Sappiamo che ogni linea di produzione è il cuore pulsante di un'azienda: per questo non vi lasciamo mai soli.</p><p>Dal primo bozzetto su carta fino al collaudo finale e all'assistenza quotidiana sul campo, il nostro team è al vostro fianco per garantire che ogni imballaggio sia perfetto, ogni processo sia ottimizzato e ogni investimento generi valore concreto nel tempo.</p><p>Guardiamo al futuro del packaging, insieme.</p></div></section>
   </main><ContactForm/><Footer lang={lang}/>
   <script is:inline src="/scripts/gallery.js" defer></script>
+  <PhotoZoom/>
 </Page>

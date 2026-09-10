@@ -1,0 +1,16 @@
+<dialog class="photo-zoom" aria-label="Foto ingrandita">
+  <form method="dialog"><button type="submit" aria-label="Chiudi foto ingrandita" autofocus>×</button></form>
+  <img alt="" />
+</dialog>
+<!-- Requested image zoom: a small script opens/closes the native modal without navigating. -->
+<script is:inline src="/scripts/photo-zoom.js" defer></script>
+
+<style>
+  .photo-zoom { position:fixed; inset:0; margin:0; width:100%; height:100dvh; max-width:none; max-height:none; padding:72px 24px 24px; border:0; background:transparent; color:white; }
+  .photo-zoom[open] { display:flex; align-items:center; justify-content:center; }
+  .photo-zoom::backdrop { background:rgb(0 0 0 / .88); }
+  .photo-zoom img { display:block; width:auto; height:auto; max-width:100%; max-height:100%; object-fit:contain; }
+  .photo-zoom button { position:fixed; top:16px; right:20px; width:44px; height:44px; padding:0; border:1px solid white; border-radius:50%; background:#292929; color:white; font:32px/1 sans-serif; cursor:pointer; }
+  .photo-zoom button:focus-visible { outline:3px solid white; outline-offset:4px; }
+  :global(html:has(.photo-zoom[open])) { overflow:hidden; }
+</style>
