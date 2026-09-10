@@ -18,10 +18,10 @@ these, read the "why not" column first — it was already argued.
 | CMS | **Sanity Studio**, standalone in `studio/` | Hosted content backend, code-defined schemas, non-technical editor UI. Decision changed from Payload on 2026-08-25. |
 | Content storage | **Sanity Content Lake**, dataset `production` | Managed database and asset pipeline; no Postgres or custom CMS runtime to operate. Data-residency and DPA verification remain pre-launch work. |
 | File storage | **Sanity assets** for public images/documents | Keeps editorial assets beside content. Never upload private files; production video needs a dedicated streaming service. |
-| Hosting | **Vercel** for the Astro site; Studio hosting URL TBD | Public pages stay static. The Studio can be deployed separately without putting a CMS runtime behind `pkt.it`. |
+| Hosting | **Vercel** for the eventual production Astro site; preview on GitHub Pages; Studio at `https://pkt-cms.sanity.studio/` | Public pages stay static. The Studio can be deployed separately without putting a CMS runtime behind `pkt.it`. |
 | Email | **Resend** | Contact form only. Needs SPF/DKIM on `pkt.it`. |
 | Analytics | **None** | Nobody will read a dashboard. The consent banner exists only because the accepted LinkedIn widget sets third-party cookies. |
-| Rebuild | Sanity publish webhook → Vercel deploy hook | A content publish triggers an Astro rebuild; visitors never query Sanity at runtime. |
+| Rebuild | Production: Sanity publish webhook → Vercel deploy hook. Temporary GitHub Pages preview: scheduled rebuild every 10 minutes (approved 2026-09-10). | A content publish triggers an Astro rebuild; visitors never query Sanity at runtime. |
 
 ## Rejected, and why
 
@@ -56,7 +56,8 @@ The only PKT-owned dynamic thing on the public site.
 ## Content model (shape, not final)
 
 See `sanity.md` for the 2026-09-09 discussion, confirmed decisions, proposed document
-types, editorial limitations and unanswered questions. Studio schemas remain empty.
+types, editorial limitations and unanswered questions. Category and machine Studio schemas
+and their Astro build-time connection were implemented on 2026-09-10.
 
 Roughly 6–9 categories, each with up to ~6 machines → ~40–55 machine pages.
 
@@ -67,8 +68,7 @@ Roughly 6–9 categories, each with up to ~6 machines → ~40–55 machine pages
 - `Page` — conceptual grouping for fixed pages. Separate singleton schemas were
   proposed for each page; that schema breakdown is not finalized.
 - Every editorial text field is localized. Slugs are single across locales according
-  to `routes.md`; the remaining stale question in `todo.md` must be resolved before
-  schema work begins.
+  to `routes.md`, reconfirmed by the user on 2026-09-10.
 
 Structure is defined by the developer. Editors fill fields; they never add or reorder
 page sections. Do not add a Sanity page-builder.
@@ -87,3 +87,17 @@ Editor count, plan and least-privilege roles remain open.
   translations fall back to Italian at build time.
 - `hreflang` tags on every page — otherwise Google treats 4 locales as duplicate content.
 - Translation is human-only. Do not install or enable Sanity AI translation tooling.
+
+## CMS-connected preview — 2026-09-10
+
+User chose to retain GitHub Pages for now. Astro fetches published categories and
+machines from project `85609dop` / `production` during static builds using the
+native Fetch API. Sanity image transforms and Portable Text are handled by
+`@sanity/image-url` and `astro-portabletext`; no CMS browser client is shipped.
+Home category cards, header categories, category pages and machine details use
+Sanity. Other fixed-page content remains code-owned preview copy pending schemas.
+
+The GitHub Actions preview workflow rebuilds on code pushes, manual dispatch and
+a ten-minute cron. This temporary schedule avoids adding a webhook endpoint or
+sharing a GitHub token with Sanity. GitHub may delay scheduled runs; it is not an
+immediate publish hook. Keep the production Vercel/webhook plan for launch.

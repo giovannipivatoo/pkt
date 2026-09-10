@@ -3,7 +3,7 @@ import TopNav from './TopNav.astro';
 const {title, image, subtitle, description, kind = '', lang, path} = Astro.props;
 ---
 <header class:list={['pkt-hero', kind]}>
-  <img class="pkt-hero__image" src={image} alt="" fetchpriority="high" />
+  {image && <img class="pkt-hero__image" src={image} alt="" fetchpriority="high" />}
   <div class="pkt-hero__shade"></div>
   <TopNav lang={lang} path={path} />
   <h1 class="pkt-hero__title">{title}</h1>

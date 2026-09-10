@@ -5,6 +5,7 @@
   "main": "package.json",
   "license": "UNLICENSED",
   "scripts": {
+    "check": "tsc --noEmit && sanity schema validate && sanity exec scripts/check-localization.mjs",
     "build": "sanity build",
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy",
@@ -15,10 +16,12 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/vision": "^6.10.1",
+    "@sanity/language-filter": "^5.0.18",
+    "@sanity/vision": "^6.13.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "sanity": "^6.10.1",
+    "sanity": "^6.13.1",
+    "sanity-plugin-internationalized-array": "^5.2.4",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {

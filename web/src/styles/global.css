@@ -47,3 +47,9 @@ html{overflow-x:clip}.feed-content{height:3155rem;padding:75rem 0 0 69rem}.feed-
   .social-images--single{max-width:100%}
   .social-post footer{position:static;height:auto;min-height:24rem;margin-top:auto;padding-top:12rem}
 }
+
+/* Editorial copy may grow; retain the design's spacing without clipping CMS text. */
+.cms-text{white-space:pre-line}
+.products-intro,.machine-intro,.machine-copy{height:auto}
+.products-intro{min-height:260rem}.machine-intro{min-height:154rem}.machine-copy{min-height:682rem}
+@media(max-width:760px){.products-intro,.machine-intro,.machine-copy{min-height:0}}

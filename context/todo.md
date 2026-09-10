@@ -24,18 +24,19 @@ Nothing here should be guessed at. Ask.
 - [ ] **Content and component structure** — finalize with the user. Proposed Sanity
       documents and fixed-page singleton schemas are recorded in `sanity.md`;
       they are not yet approved schemas.
-- [ ] **Category and machine list** — real names, real counts.
+- [ ] **Full production category and machine list** — initial preview seed imported:
+      Confezionatrice verticale, Confezionatrice orizzontale, Presse; FPK 24/42/44
+      under verticale. FPK42/44 intentionally copy FPK24 and need real sheets before launch.
 - [x] Machine category relationship: exactly one category (confirmed 2026-09-09).
 - [x] Machine spec table: free label/value rows per machine (confirmed 2026-09-09).
 - [ ] Remaining machine fields: confirm PDFs, video, variants, gallery requirements,
       and whether downloadable files differ by language.
-- [ ] **Resolve the stale slug decision.** `routes.md` already specifies one slug in
-      every locale, while the old content-model notes left it open. Confirm the
-      single-slug rule before the Sanity schema is written.
+- [x] **Shared slugs confirmed 2026-09-10.** Category and machine slugs are identical
+      across locales; only the language prefix changes.
 - [ ] Does the catalog need search or filtering, or is browsing by category enough?
       Default: no search. Static site, ~50 items — a category list is sufficient.
-- [ ] **Sanity Studio production URL.** Use Sanity's hosted Studio domain, a dedicated
-      subdomain, or a `/admin` route/proxy? Do not assume the old Payload rewrite.
+- [x] **Sanity Studio URL:** https://pkt-cms.sanity.studio/ deployed 2026-09-10.
+      Existing PKT project authentication controls access.
 - [ ] **Sanity seats and plan.** Confirm the number of PKT editors and that the chosen
       plan/roles fit before inviting staff.
 - [x] **Publishing workflow:** editors can publish directly; no separate approver
@@ -61,8 +62,11 @@ Roughly dependency-ordered. Don't start further down until the thing above is re
 3. Locale config + one localized document type end to end, to prove the i18n pattern
    before it's replicated 5 times.
 4. Finalize and implement the content model in `sanity.md`. Structure locked by code.
-5. Astro fetches at build time, generates static pages per locale.
-6. Deploy hook wiring: Sanity publish → site rebuild.
+   Category and machine Studio schemas and initial preview content imported
+   2026-09-10; Astro catalog integration completed the same day.
+5. ~~Astro catalog fetches at build time, generates static pages per locale.~~ Done; fixed-page schemas remain open.
+6. Production deploy hook wiring: Sanity publish → Vercel rebuild. GitHub Pages
+   preview uses a ten-minute scheduled rebuild (user chose Pages on 2026-09-10).
 7. ~~Preview components from supplied Figma screens.~~ Done; remaining category/detail designs still pending.
 8. Contact form endpoint + Resend + honeypot.
 9. Studio URL, custom domain, redirects from the old site, `hreflang`, sitemap.
@@ -83,9 +87,20 @@ Roughly dependency-ordered. Don't start further down until the thing above is re
 - [ ] Replace the repeated LinkedIn test post with the approved real editorial feed.
 - [x] Correct the FPK24 catalog placeholder using the FPK44 layout; all machine arrows temporarily link to FPK24 detail, as requested.
 - [ ] Supply remaining category/detail designs; catalog root currently reuses the supplied confezionatrici design.
-- [ ] Connect approved CMS content and human translations; the preview currently uses Italian fallback copy.
+- [x] Connect category/machine CMS content; four locales use Italian fallback.
+- [ ] Supply human translations and connect fixed-page editorial content.
 - [ ] Activate contact submission only after the email and privacy prerequisites above are resolved.
 
 See `web/README.md` for preview routes and intentional limitations.
 - [x] GitHub Actions configuration for a shareable Pages preview (requested 2026-09-09).
 - [x] Enable GitHub Pages: owner approved public repository visibility on 2026-09-09; Pages now uses GitHub Actions.
+
+## CMS-connected preview — 2026-09-10
+
+- [x] Hosted Studio and static Sanity catalog integration.
+- [x] Separate routes for FPK24/42/44 and all three categories; home/menu links use
+      published categories. Current category layout is reused with available copy.
+- [x] CMS text/image/specification rendering and Portable Text; schema/runtime
+      validation prevents invalid category references or duplicate routes.
+- [x] Preview refresh workflow scheduled every ten minutes, plus manual dispatch.
+- [ ] Production Vercel integration, immediate publish hook and pkt.it cutover.

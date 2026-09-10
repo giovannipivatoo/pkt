@@ -1,0 +1,15 @@
+---
+import {locales} from '../../../../../../locales';
+import {getCatalog, categoryPath} from '../../../../lib/catalog.mjs';
+import CategoryPage from '../../../../components/CategoryPage.astro';
+export async function getStaticPaths() {
+  const {categories, machines} = await getCatalog();
+  return locales.flatMap(lang => categories.map(category => ({
+    params: {lang, type: category.slug.current},
+    props: {category, machines: machines.filter(item => item.category._ref === category._id)},
+  })));
+}
+const {lang} = Astro.params;
+const {category, machines} = Astro.props;
+---
+<CategoryPage category={category} machines={machines} lang={lang} path={categoryPath(category)}/>

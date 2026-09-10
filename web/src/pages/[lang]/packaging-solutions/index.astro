@@ -1,0 +1,12 @@
+---
+import {locales} from '../../../../../locales';
+import {getCatalog} from '../../../lib/catalog.mjs';
+import CategoryPage from '../../../components/CategoryPage.astro';
+export function getStaticPaths() { return locales.map(lang => ({params: {lang}})); }
+const {lang} = Astro.params;
+const {categories, machines} = await getCatalog();
+// Preserve the existing catalog-root composition until its distinct Figma design is supplied.
+const category = categories.find(item => item.slug.current === 'confezionatrici') || categories[0];
+if (!category) throw new Error('Publish at least one catalog category in Sanity.');
+---
+<CategoryPage category={category} machines={machines.filter(item => item.category._ref === category._id)} lang={lang} path="packaging-solutions/"/>

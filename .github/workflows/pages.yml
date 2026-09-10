@@ -2,7 +2,10 @@ name: Deploy website preview
 on:
   push:
     branches: [main]
-    paths: ['web/**', 'locales.ts', '.github/workflows/pages.yml']
+    paths: ['web/**', 'locales.ts', 'localized.ts', '.github/workflows/pages.yml']
+  # Temporary GitHub Pages preview: refresh published Sanity content without a PAT/webhook server.
+  schedule:
+    - cron: '*/10 * * * *'
   workflow_dispatch:
 permissions:
   contents: read
@@ -31,6 +34,9 @@ jobs:
           PKT_LINKEDIN_PREVIEW: 'true'
       - name: Verify preview feed embeds
         run: node scripts/verify-feed.mjs --preview --build-only
+        working-directory: web
+      - name: Verify CMS pages
+        run: node scripts/verify-catalog.mjs
         working-directory: web
       - name: Prepare project URLs and verify output
         run: node scripts/pages.mjs

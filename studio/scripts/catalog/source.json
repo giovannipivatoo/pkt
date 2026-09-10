@@ -1,0 +1,298 @@
+{
+  "source": "Local Astro preview, extracted 2026-09-10. Only model and slug differ between machines. Existing English specifications are copied verbatim, not translated.",
+  "categories": [
+    {
+      "name": "Confezionatrice verticale",
+      "pageTitle": "CONFEZIONATRICI VERTICALI",
+      "slug": "confezionatrici",
+      "order": 0,
+      "subtitle": "Infinite soluzioni di confezionamento",
+      "heroDescription": "Le confezionatrici verticali FPK sono il risultato di anni di esperienza e innovazione, e sono altamente referenziate nel mercato delle soluzioni di confezionamento.",
+      "introduction": "La semplicità e i bassi costi di gestione sono i vantaggi chiave delle confezionatrici PKT, insieme alla flessibilità di gestire molti prodotti diversi, come: pellet, pet food, mangimi, cereali, pasta corta, farine, sabbia, inerti, fertilizzanti chimici, fertilizzanti organici, torba, terriccio, materie plastiche, ecc...\nLe macchine sono disponibili in acciaio verniciato o in acciaio inox.",
+      "image": {
+        "file": "products-imgChatGptImage13Lug20261425332.png",
+        "alt": "Confezionatrice verticale"
+      },
+      "cardImage": {
+        "file": "home-imgChatGptImage13Lug20261425331.png",
+        "alt": "Confezionatrice verticale"
+      }
+    },
+    {
+      "name": "Confezionatrice orizzontale",
+      "slug": "confezionatrici-orizzontali",
+      "order": 1,
+      "image": {
+        "file": "home-imgChatGptImage13Lug20261425331.png",
+        "alt": "Confezionatrice orizzontale"
+      }
+    },
+    {
+      "name": "Presse",
+      "slug": "presse",
+      "order": 2,
+      "image": {
+        "file": "home-imgImgPresse1.png",
+        "alt": "Presse"
+      }
+    }
+  ],
+  "machineTemplate": {
+    "subtitle": "Oltre la carta: la rivoluzione del sottovuoto impermeabile",
+    "introduction": "L'evoluzione del packaging protetto: addio ai sacchi in carta.\nPKT presenta la tecnologia di confezionamento verticale impermeabile che elimina l'umidità, ottimizza i volumi e ridefinisce gli standard di protezione per polveri, cemento e alimentari.",
+    "shortDescription": "Nel settore del confezionamento industriale, l'umidità è da sempre il nemico numero uno. PKT risponde a questa sfida introducendo una soluzione innovativa progettata specificamente per i mercati in cui il controllo ambientale è critico.",
+    "description": "Oltre la carta: la rivoluzione del sottovuoto impermeabile\n\nNel settore del confezionamento industriale, l'umidità è da sempre il nemico numero uno. PKT risponde a questa sfida introducendo una soluzione innovativa progettata specificamente per i mercati in cui il controllo ambientale è critico.\nPartendo da una bobina di film plastico, la macchina forma un sacco totalmente resistente all'acqua, ideale per proteggere prodotti sensibili come cemento, polveri e generi alimentari.\n\nCome funziona:\n\nFormatura e riempimento: Il sacco viene creato e riempito direttamente in linea da film barriera.\n\nSistema di aspirazione integrato: Prima della saldatura, un sistema di vuoto calibrato estrae l'aria in eccesso dall'interno del sacco.\n\nSigillatura ermetica: Il risultato è un imballo perfettamente sigillato, compatto, stabile e incredibilmente facile da movimentare, senza bisogno di sistemi esterni di evacuazione dell'aria.\n\nIl nuovo standard di mercato: Questa tecnologia è nata per sostituire definitivamente i tradizionali sacchi di carta. Laddove i vecchi imballaggi cedono all'umidità compromettendo il prodotto, la soluzione sigillata PKT garantisce una protezione assoluta, una shelf-life prolungata e una logistica impeccabile.\n\nSpecifiche e vantaggi\n\nVelocità del ciclo fino a 8 sacchetti al minuto\n\nRisparmio sui costi di imballaggio rispetto ai sacchetti con valvola, che possono essere più costosi\n\nI sacchetti in polietilene non risentono dell'umidità.\n\nEnormi risparmi sulle spese in conto capitale per i macchinari.",
+    "body": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s0",
+            "text": "Oltre la carta: la rivoluzione del sottovuoto impermeabile",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Nel settore del confezionamento industriale, l'umidità è da sempre il nemico numero uno. PKT risponde a questa sfida introducendo una soluzione innovativa progettata specificamente per i mercati in cui il controllo ambientale è critico.\nPartendo da una bobina di film plastico, la macchina forma un sacco totalmente resistente all'acqua, ideale per proteggere prodotti sensibili come cemento, polveri e generi alimentari.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s2",
+            "text": "Come funziona:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s3",
+            "text": "Formatura e riempimento: Il sacco viene creato e riempito direttamente in linea da film barriera.",
+            "marks": []
+          }
+        ],
+        "listItem": "bullet",
+        "level": 1
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s4",
+            "text": "Sistema di aspirazione integrato: Prima della saldatura, un sistema di vuoto calibrato estrae l'aria in eccesso dall'interno del sacco.",
+            "marks": []
+          }
+        ],
+        "listItem": "bullet",
+        "level": 1
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s5",
+            "text": "Sigillatura ermetica: Il risultato è un imballo perfettamente sigillato, compatto, stabile e incredibilmente facile da movimentare, senza bisogno di sistemi esterni di evacuazione dell'aria.",
+            "marks": []
+          }
+        ],
+        "listItem": "bullet",
+        "level": 1
+      }
+    ],
+    "secondaryBody": [
+      {
+        "_type": "block",
+        "_key": "b0",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s0",
+            "text": "Il nuovo standard di mercato: Questa tecnologia è nata per sostituire definitivamente i tradizionali sacchi di carta. Laddove i vecchi imballaggi cedono all'umidità compromettendo il prodotto, la soluzione sigillata PKT garantisce una protezione assoluta, una shelf-life prolungata e una logistica impeccabile.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Specifiche e vantaggi",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "_key": "b2",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s2",
+            "text": "Velocità del ciclo fino a 8 sacchetti al minuto",
+            "marks": []
+          }
+        ],
+        "listItem": "bullet",
+        "level": 1
+      },
+      {
+        "_type": "block",
+        "_key": "b3",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s3",
+            "text": "Risparmio sui costi di imballaggio rispetto ai sacchetti con valvola, che possono essere più costosi",
+            "marks": []
+          }
+        ],
+        "listItem": "bullet",
+        "level": 1
+      },
+      {
+        "_type": "block",
+        "_key": "b4",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s4",
+            "text": "I sacchetti in polietilene non risentono dell'umidità.",
+            "marks": []
+          }
+        ],
+        "listItem": "bullet",
+        "level": 1
+      },
+      {
+        "_type": "block",
+        "_key": "b5",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s5",
+            "text": "Enormi risparmi sulle spese in conto capitale per i macchinari.",
+            "marks": []
+          }
+        ],
+        "listItem": "bullet",
+        "level": 1
+      }
+    ],
+    "image": {
+      "file": "machine-imgFpk242.png",
+      "alt": "FPK24"
+    },
+    "detailImage": {
+      "file": "machine-imgFpk24W1.png",
+      "alt": "Confezionatrice verticale FPK24"
+    },
+    "specifications": [
+      {
+        "label": "Maximum bag length (empty)",
+        "value": "680 mm"
+      },
+      {
+        "label": "Maximum Reel Width",
+        "value": "1100mm"
+      },
+      {
+        "label": "Maximum Reel Diameter",
+        "value": "600mm"
+      },
+      {
+        "label": "Designed speed",
+        "value": "Up to 480 bags /hour"
+      },
+      {
+        "label": "Installed power (3x400+N+G)",
+        "value": "10 Kw"
+      },
+      {
+        "label": "Air consumption (8 bar)",
+        "value": "Minimum 800 lt/min"
+      }
+    ],
+    "gallery": [
+      {
+        "file": "machine-imgChatGptImage13Lug20261425332.png",
+        "alt": "FPK24 in linea",
+        "caption": "FPK24 in linea"
+      },
+      {
+        "file": "machine-imgImgDoser1.png",
+        "alt": "Dosatori",
+        "caption": "Dosatori"
+      },
+      {
+        "file": "machine-imgImgPresse1.png",
+        "alt": "Presse",
+        "caption": "Presse"
+      }
+    ],
+    "order": 0
+  },
+  "machines": [
+    {
+      "model": "FPK 24",
+      "slug": "fpk-24"
+    },
+    {
+      "model": "FPK 42",
+      "slug": "fpk-42"
+    },
+    {
+      "model": "FPK 44",
+      "slug": "fpk-44"
+    }
+  ]
+}

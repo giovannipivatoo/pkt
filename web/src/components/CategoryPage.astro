@@ -1,0 +1,21 @@
+---
+import Page from '../layouts/Page.astro';
+import Hero from './Hero.astro';
+import MachineCard from './MachineCard.astro';
+import ContactForm from './ContactForm.astro';
+import Footer from './Footer.astro';
+import {text, imageUrl, machinePath} from '../lib/catalog.mjs';
+const {category, machines, lang, path} = Astro.props;
+const title = text(category.pageTitle, lang) || text(category.name, lang);
+---
+<Page title={text(category.seo?.title, lang) || title} description={text(category.seo?.description, lang) || text(category.heroDescription, lang)} lang={lang}>
+  <Hero kind="short products" lang={lang} path={path} image={imageUrl(category.image)} title={title} subtitle={text(category.subtitle, lang)} description={text(category.heroDescription, lang)}/>
+  <main id="main">
+    {text(category.introduction, lang) && <p class="intro products-intro cms-text">{text(category.introduction, lang)}</p>}
+    <div class="products-list">{machines.map((machine, index) => <MachineCard
+      side={index % 2 ? 'right' : 'left'} name={machine.model}
+      subtitle={text(machine.subtitle, lang)} text={text(machine.shortDescription, lang)}
+      image={imageUrl(machine.image)} imageAlt={text(machine.image?.alt, lang) || machine.model}
+      href={`/${lang}/${machinePath(machine, category)}`}/>)}</div>
+  </main><ContactForm/><Footer lang={lang}/>
+</Page>

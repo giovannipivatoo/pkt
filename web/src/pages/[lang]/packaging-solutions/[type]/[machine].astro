@@ -1,0 +1,50 @@
+---
+import {locales} from '../../../../../../locales';
+import {PortableText} from 'astro-portabletext';
+import {getCatalog, text, imageUrl, categoryPath, machinePath, richText} from '../../../../lib/catalog.mjs';
+import Page from '../../../../layouts/Page.astro';
+import Hero from '../../../../components/Hero.astro';
+import CategoryCard from '../../../../components/CategoryCard.astro';
+import ContactForm from '../../../../components/ContactForm.astro';
+import Footer from '../../../../components/Footer.astro';
+export async function getStaticPaths() {
+  const {categories, machines} = await getCatalog();
+  return locales.flatMap(lang => machines.map(machine => {
+    const category = categories.find(item => item._id === machine.category._ref);
+    const siblings = machines.filter(item => item.category._ref === category._id);
+    const index = siblings.findIndex(item => item._id === machine._id);
+    return {params: {lang, type: category.slug.current, machine: machine.slug.current},
+      props: {machine, category, previous: siblings[index - 1], next: siblings[index + 1]}};
+  }));
+}
+const {lang} = Astro.params;
+const {machine, category, previous, next} = Astro.props;
+const gallery = (machine.gallery || []).filter(image => image.asset?._ref);
+const body = richText(machine.body, lang);
+const secondaryBody = richText(machine.secondaryBody, lang);
+const categoryUrl = `/${lang}/${categoryPath(category)}`;
+---
+<Page title={text(machine.seo?.title, lang) || machine.model} description={text(machine.seo?.description, lang) || text(machine.shortDescription, lang)} lang={lang}>
+  <Hero kind="short machine" lang={lang} path={machinePath(machine, category)} image={imageUrl(machine.image)} title={machine.model} subtitle={text(machine.subtitle, lang)}/>
+  <main id="main">
+    {text(machine.introduction, lang) && <p class="intro machine-intro cms-text">{text(machine.introduction, lang)}</p>}
+    <section class="machine-details">
+      {imageUrl(machine.detailImage || machine.image) && <img src={imageUrl(machine.detailImage || machine.image)} alt={text((machine.detailImage || machine.image)?.alt, lang) || machine.model}/>}
+      <div class="machine-specs"><h2>Specifiche tecniche</h2><table aria-label={`Specifiche tecniche ${machine.model}`}><tbody>
+        {(machine.specifications || []).map(row => <tr><td>{text(row.label, lang)}</td><td>{text(row.value, lang)}</td></tr>)}
+      </tbody></table></div>
+    </section>
+    {gallery.length > 0 && <section class="machine-gallery gallery-area" aria-label={`Galleria ${machine.model}`}>
+      {gallery.length > 1 && <div class="gallery-arrows"><a href={`#machine-photo-${gallery.length}`} aria-label="Foto successive"><img src="/images/arrow.svg" alt=""/></a><a href="#machine-photo-1" aria-label="Foto precedenti"><img src="/images/arrow.svg" alt=""/></a></div>}
+      <div class="gallery-strip">{gallery.map((image, index) => <div id={`machine-photo-${index + 1}`}><CategoryCard gallery title={text(image.caption, lang) || machine.model} imageAlt={text(image.alt, lang)} image={imageUrl(image, 1000, 650)} href={imageUrl(image, 2400)}/></div>)}</div>
+    </section>}
+    {(body.length > 0 || secondaryBody.length > 0 || text(machine.description, lang)) && <section class="machine-copy">
+      <div>{body.length ? <PortableText value={body}/> : <p class="cms-text">{text(machine.description, lang)}</p>}</div>
+      <div>{secondaryBody.length > 0 && <PortableText value={secondaryBody}/>}</div>
+    </section>}
+    <nav class="machine-pagination" aria-label="Navigazione macchinari">
+      <a href={previous ? `/${lang}/${machinePath(previous, category)}` : categoryUrl}><img src="/images/arrow.svg" alt=""/>{previous ? 'Precedente' : text(category.name, lang)}</a>
+      <a href={next ? `/${lang}/${machinePath(next, category)}` : categoryUrl}>{next ? 'Successivo' : text(category.name, lang)}<img src="/images/arrow.svg" alt=""/></a>
+    </nav>
+  </main><ContactForm machine/><Footer lang={lang}/>
+</Page>

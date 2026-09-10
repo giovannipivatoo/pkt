@@ -3,9 +3,10 @@
 ## Current state
 
 Project `pkt` (`85609dop`), public dataset `production`, standalone Studio in
-`studio/`. `studio/schemaTypes/index.ts` is still empty. The website uses local
-preview content; no CMS queries, editorial imports, or publish/rebuild webhook
-have been implemented. Sanity is the selected CMS, not an alternative under review.
+`studio/`. Category and machine schemas are implemented (2026-09-10). The website uses local
+preview content. The initial catalog content was imported on 2026-09-10;
+Astro now reads the catalog at build time. The GitHub Pages preview rebuilds on
+a ten-minute schedule; the production publish webhook remains pending. Sanity is the selected CMS, not an alternative under review.
 
 ## Confirmed by the user
 
@@ -56,8 +57,8 @@ Do not add an arbitrary HTML input simply because the user supplied iframe marku
 
 - Keep one machine document across languages, with localized editorial fields and
   shared category/model/order data. Do not create four copies of each machine.
-- Use `sanity-plugin-internationalized-array` as selected in `stack.md`. It is not
-  installed/configured yet. Match projections to the installed plugin version;
+- Use `sanity-plugin-internationalized-array` as selected in `stack.md`. Version 5.2.4 is
+  installed and configured for string/text fields in Studio. Match projections to the installed plugin version;
   the newer plugin uses a `language` property rather than encoding language in
   `_key`. Do not blindly copy older query examples.
 - Adding a locale enables fields/routes; it does not provide translations.
@@ -66,8 +67,7 @@ Do not add an arbitrary HTML input simply because the user supplied iframe marku
 - Missing or empty translations must fall back to Italian at build time. Plain
   `coalesce` handles null/missing values, not every empty-string/empty-array case;
   verify the actual stored values in the first end-to-end example.
-- `routes.md` specifies shared slugs across languages; explicit reconfirmation of
-  that earlier decision was asked but not answered in this discussion.
+- Shared category/machine slugs across languages were reconfirmed on 2026-09-10.
 
 ## Limits discussed
 
@@ -99,5 +99,71 @@ Reference discussed: [Sanity localization](https://www.sanity.io/docs/studio/loc
    publish/rebuild and document the editor workflow.
 
 Still ask PKT: PDF/video/variant requirements; whether PDFs differ by language;
-editor count; explicit shared-slug confirmation; which old-site content and URLs
+editor count; which old-site content and URLs
 must carry over. Fixed-page schemas and feed editorial controls need approval.
+
+## Implemented — 2026-09-10
+
+- `category`: localized name/introduction, shared slug, main image, order, SEO.
+- `machine`: shared model/slug, one required category reference, localized short
+  and full descriptions, main image, order, free localized specification rows, SEO.
+- Main images include localized accessible descriptions and hotspot support.
+- Names, specification labels/values and image descriptions require Italian;
+  translations are optional. Descriptions use plain multiline text for now.
+- Studio reads the existing root `locales.ts`; `localized.ts` resolves text with
+  Italian fallback for missing, empty and whitespace-only translations.
+- Slugs use Sanity's default uniqueness validation within each document type;
+  changing a machine category or slug requires handling old URL redirects.
+- `npm run check` in `studio/` checks TypeScript, schemas and text fallback.
+- Initial catalog content is now imported (see below). No hosted Studio deployment
+  was performed at this stage. Astro now uses the catalog content; fixed-page CMS content,
+  PDF/video/variants and the production publish hook remain pending.
+
+## Initial catalog content — 2026-09-10
+
+User requested recreating the current preview catalog in Sanity, copying all FPK24
+data to the other vertical machines and changing only model and slug. The user
+clarified category names: **Confezionatrice verticale**, **Confezionatrice
+orizzontale**, **Presse**. These are distinct categories.
+
+- Source snapshot: `studio/scripts/catalog/source.json`, extracted from the local
+  Astro homepage, catalog and FPK24 detail. This is not a crawl of the old pkt.it.
+- Categories: `confezionatrici`, `confezionatrici-orizzontali`, `presse`. Preserve
+  the existing vertical URL. The other two slugs currently have no Astro pages.
+- Vertical machines: **FPK 24**, **FPK 42**, **FPK 44** (`fpk-24`, `fpk-42`, `fpk-44`).
+  All three reference the vertical category. Only name and slug differ.
+- Category fields now include separate page title, subtitle, opening description
+  and card image to retain the existing page content.
+- Machine fields now include subtitle, introduction, two fixed rich-text fields
+  (Portable Text), specification-side image and the existing three-image gallery.
+  Shared images have optional localized captions. No layout controls were added.
+- All source wording is preserved in the Italian base entry, including the English
+  technical labels already present in the preview. No translations were generated.
+- Data is created as published Content Lake documents, available for future build
+  queries. Publishing here does not update the current static website.
+- FPK42/FPK44 content is intentionally demonstrative, not their real technical data.
+  Replace it with approved sheets before the production launch. Gallery requirements
+  beyond the current preview and PDF/video/variants remain open.
+- Import script uses Sanity-generated IDs and returned references, checks for
+  existing slugs, and never overwrites existing documents. Images are uploaded to
+  Sanity with content-based asset deduplication.
+- No production cutover or old-site redirect migration is included in this seed.
+
+## Connected and hosted — 2026-09-10
+
+- Studio deployed: https://pkt-cms.sanity.studio/ (`appId`
+  `x8q37mf59lycd14al06t6c6p`), using the existing project and accounts.
+- `web/src/lib/catalog.mjs` reads published content once per production build.
+  Drafts do not appear online. Local development reads fresh published content on
+  refresh. Request failures or invalid references fail the build.
+- Categories generate the header, home cards and category routes; machines generate
+  individual detail routes and real previous/next links within their category.
+- Rich text, images (including Sanity crop/hotspot), SEO fields, descriptions and
+  specification rows are rendered into static HTML. Missing text falls back to
+  Italian, including empty strings and empty rich-text translations.
+- Fixed-page content outside the catalog is not yet editable through Studio.
+- User chose GitHub Pages for now. Scheduled builds every ten minutes expose
+  published changes without a webhook service or GitHub PAT in Sanity. Schedules
+  may be delayed by GitHub; use manual workflow dispatch when needed.
+- This remains the noindex visual preview; production domain, consent and form
+  prerequisites are unchanged.

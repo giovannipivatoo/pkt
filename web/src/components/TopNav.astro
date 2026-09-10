@@ -1,12 +1,10 @@
 ---
 import { locales } from '../../../locales';
+import {getCatalog, text, categoryPath} from '../lib/catalog.mjs';
 const {lang = 'it', path = ''} = Astro.props;
 const links = [['Pkt','pkt/'], ['Packaging Solutions','packaging-solutions/'], ['Sostenibilità','sustainability/'], ['Feed','feed/'], ['Contatti','#contact']];
-const categories = [
-  ['Confezionatrici Verticali', 'packaging-solutions/confezionatrici/'],
-  ['Confezionatrici Orizzontali', null],
-  ['Presse', null],
-];
+const catalog = await getCatalog();
+const categories = catalog.categories.map(category => [text(category.name, lang), categoryPath(category)]);
 ---
 <nav class="pkt-nav" aria-label="Navigazione principale">
   <a class="pkt-nav__logo" href={`/${lang}/`} aria-label="PKT — homepage"><img src="/images/logo.svg" alt="PKT" width="292" height="68" /></a>
