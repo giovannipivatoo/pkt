@@ -1,0 +1,56 @@
+html{scroll-padding-top:120px}
+.pkt-nav[data-nav]{position:fixed;z-index:9;color:#fff;top:64rem;left:max(70rem,calc((100vw - 1920px)/2 + 70rem));right:max(51rem,calc((100vw - 1920px)/2 + 51rem))}
+.pkt-nav[data-nav].is-docked{top:0;left:0;right:0;height:84px;padding:18px max(24px,calc((100vw - 1780px)/2));align-items:center;background:#202020;box-shadow:0 6px 24px #0002;font-size:clamp(14px,1.15vw,22px);line-height:1.5;gap:24px}
+.pkt-nav[data-nav].is-docked .pkt-nav__logo{width:clamp(130px,14vw,220px)}
+.pkt-nav[data-nav].is-docked .pkt-lang{margin-left:clamp(20px,5vw,90px)}
+.pkt-nav[data-nav="isola"].is-docked{top:12px;left:max(16px,calc((100vw - 1280px)/2));right:max(16px,calc((100vw - 1280px)/2));height:70px;padding:12px 24px;border:1px solid #ffffff26;border-radius:22px;background:#202020f5}
+.pkt-nav[data-nav="isola"].is-docked .pkt-nav__logo{width:135px}
+/* Both glass studies keep the full bar's proportions and stay visible on scroll.
+   Solid fallback keeps white links readable when backdrop filtering is unavailable. */
+.pkt-nav[data-nav="glass"].is-docked{top:10px;left:12px;right:12px;border:1px solid #ffffff38;background:#25282b;border-radius:42px;box-shadow:inset 0 1px 0 #ffffff40,inset 0 -1px 0 #ffffff12,0 8px 30px #0003}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .pkt-nav[data-nav="glass"].is-docked{background:linear-gradient(115deg,#ffffff1f,transparent 32%,#ffffff0d 62%,transparent),#14181cb8;-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%)}
+}
+.pkt-nav[data-nav].is-hidden:not(:focus-within){translate:0 calc(-100% - 24px)}
+.nav-preview{position:fixed;z-index:8;bottom:12px;right:12px;padding:10px 14px;border:1px solid #666;border-radius:14px;background:#202020;color:white;font:14px/1.4 Apfel,Arial,sans-serif;max-width:calc(100% - 24px)}
+.nav-preview label{margin-right:10px}.nav-preview select{font:inherit;background:#303030;color:#fff;border:1px solid #777;padding:8px;border-radius:8px;max-width:100%}
+@media(max-width:760px){
+  .pkt-nav[data-nav]{top:36px;left:32px;right:32px}
+  .pkt-nav[data-nav].is-docked{height:68px;padding:12px 20px;gap:16px;font-size:16px}
+  .pkt-nav[data-nav].is-docked .pkt-nav__logo{width:115px}
+  .pkt-nav[data-nav].is-docked .pkt-lang{margin-left:auto}
+  .pkt-nav[data-nav="isola"].is-docked{height:64px;padding:12px 16px;left:10px;right:10px;top:10px;gap:12px}
+  .pkt-nav[data-nav="isola"].is-docked .pkt-nav__logo{width:100px}
+  .pkt-nav[data-nav="glass"].is-docked{top:8px;left:8px;right:8px;padding:12px 16px;gap:12px;border-radius:30px}
+  .nav-preview label{display:none}
+}
+@media(prefers-reduced-motion:no-preference){.pkt-nav[data-nav]{transition:translate .25s ease,background-color .25s ease,box-shadow .25s ease}}
+/* 05: glass follows the hero's measured edges/radius, while content keeps its X. */
+.pkt-nav[data-nav="sfumata"],.pkt-nav[data-nav="sfumata"].is-docked{top:var(--nav-glass-top,64rem);left:max(70rem,calc((100vw - 1920px)/2 + 70rem));right:max(51rem,calc((100vw - 1920px)/2 + 51rem));height:68rem;padding:0;border:0;border-radius:0;gap:35rem;align-items:flex-start;font-size:22rem;line-height:34rem;background:none;box-shadow:none;isolation:isolate;transition:none}
+.pkt-nav[data-nav="sfumata"].is-docked .pkt-nav__logo{width:292rem}
+.pkt-nav[data-nav="sfumata"].is-docked .pkt-lang{margin-left:105rem}
+.pkt-nav[data-nav="sfumata"]::before,.pkt-nav[data-nav="sfumata"]::after{content:'';position:absolute;top:var(--glass-top,-39rem);left:var(--glass-left,-47rem);right:var(--glass-right,-28rem);bottom:-20rem;z-index:-1;pointer-events:none;border-radius:var(--glass-radius,44rem);opacity:var(--detach,0)}
+.pkt-nav[data-nav="sfumata"]::before{background:#292d30;box-shadow:0 2px 5px rgb(0 0 0 / calc(.05 * var(--glass-shadow,.5))),0 12px 28px rgb(0 0 0 / calc(.125 * var(--glass-shadow,.5))),0 26px 54px rgb(0 0 0 / calc(.08 * var(--glass-shadow,.5)))}
+.pkt-nav[data-nav="sfumata"]::after{border:1px solid rgb(255 255 255 / calc(.125 * var(--glass-shine,1)));background:linear-gradient(115deg,rgb(255 255 255 / calc(.07 * var(--glass-shine,1))),transparent 28%,transparent 72%,rgb(255 255 255 / calc(.024 * var(--glass-shine,1))));box-shadow:inset 0 1px 0 rgb(255 255 255 / calc(.27 * var(--glass-shine,1))),inset 0 -1px 0 rgb(255 255 255 / calc(.047 * var(--glass-shine,1)))}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .pkt-nav[data-nav="sfumata"]::before{background:linear-gradient(180deg,rgb(32 40 47 / calc(var(--glass-opacity,.28) + .04)),rgb(32 37 42 / calc(var(--glass-opacity,.28) - .05)) 52%,rgb(23 29 35 / var(--glass-opacity,.28)));-webkit-backdrop-filter:blur(calc(var(--glass-blur,10px) * (.38 + .62 * var(--detach,0)))) saturate(var(--glass-saturation,105%));backdrop-filter:blur(calc(var(--glass-blur,10px) * (.38 + .62 * var(--detach,0)))) saturate(var(--glass-saturation,105%))}
+}
+@media(max-width:760px){
+  .pkt-nav[data-nav="sfumata"],.pkt-nav[data-nav="sfumata"].is-docked{top:var(--nav-glass-top,36px);left:32px;right:32px;height:34px;gap:20px;font-size:16px;line-height:34px}
+  .pkt-nav[data-nav="sfumata"].is-docked .pkt-nav__logo{width:135px}
+  .pkt-nav[data-nav="sfumata"].is-docked .pkt-lang{margin-left:auto}
+  .pkt-nav[data-nav="sfumata"]::before,.pkt-nav[data-nav="sfumata"]::after{bottom:-16px}
+}
+@media print{.nav-preview{display:none}.pkt-nav[data-nav]{position:absolute}}
+.glass-controls{margin-top:10px;border-top:1px solid #555;padding-top:10px;width:320px;max-width:100%}
+.glass-controls summary{cursor:pointer;font-weight:500;padding:4px 0}
+.glass-controls__fields{max-height:min(62dvh,560px);overflow:auto;overscroll-behavior:contain;padding:12px 3px 2px}
+.nav-preview .glass-controls label{display:block;margin:14px 0}
+.glass-controls label>span{display:flex;justify-content:space-between;gap:12px}
+.glass-controls output{color:#ccc;white-space:nowrap;font-variant-numeric:tabular-nums}
+.glass-controls input[type=range]{display:block;width:100%;margin:8px 0;accent-color:#ff3b30;min-height:24px}
+.glass-controls p{font-size:12px;color:#bbb;line-height:1.5}
+.glass-controls select{margin-top:8px;width:100%}
+.glass-controls__actions{display:flex;gap:8px;margin:16px 0}
+.glass-controls button{font:inherit;border:1px solid #777;border-radius:8px;background:#333;color:white;padding:9px 12px;cursor:pointer}
+@media(max-width:480px){.nav-preview:has(.glass-controls:not([hidden])){width:calc(100% - 24px)}}

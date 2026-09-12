@@ -3,6 +3,22 @@
 Run `npm install` and `npm run dev` in this directory. Open http://127.0.0.1:4321/it/.
 `npm run build` generates static HTML in `dist/`.
 
+## Motion — 2026-09-12
+
+The user selected 06 (Immersiva + Profondità) as the only site motion treatment.
+The selector and other variants have been removed. `motion.js` retains the smooth
+entrances, photo parallax, moving machine cutouts and pointer-driven 3D cards.
+Arrow hover/focus movement and press feedback use CSS; previous arrows move left
+and next arrows right. Disabled gallery buttons stay still. No cookies, storage,
+new dependencies, or variant query parameters are required.
+
+All effects respect live `prefers-reduced-motion` changes; content remains visible
+without JavaScript. The site still builds static HTML and queries Sanity only at
+build time. The user explicitly authorized this dedicated motion script.
+
+Run `node scripts/verify-motion.mjs /path/to/playwright/index.mjs [base URL]`
+against the built preview. Optional `PKT_QA_BROWSER` supplies a browser executable.
+
 Implemented mockups from Figma file `eynZ4rWjULZ5E6HhqDTU7U`:
 
 - `/it/` — home (3:168, with detached hero 7:1196)
@@ -82,3 +98,41 @@ Verified in Firefox: opening from click/Enter, closing with Esc, outside click a
 the close button, unchanged URL/scroll position, and restored keyboard focus.
 Build/catalog/feed/Pages URL checks pass with only the explicitly allowed gallery
 and zoom scripts.
+
+## Fixed navigation studies — 2026-09-12
+
+The bottom-right navigation selector compares `?nav=barra` (full-width fixed bar),
+`?nav=isola` (compact floating bar), and `?nav=risalita` (hides on downward scroll,
+returns on upward scroll or keyboard focus). Selection persists in page/locale
+links without storage. The original nav is moved outside the clipped hero, keeping
+one accessible menu and its keyboard order. Without JavaScript the original hero
+navigation remains usable. The approved 06 page motion stays unchanged.
+`navigation.js` is the dedicated script authorized by this request.
+Run `node scripts/verify-navigation.mjs /path/to/playwright/index.mjs [base URL]`
+with optional `PKT_QA_BROWSER` to check positioning, mobile menus and scroll behavior.
+
+Two full-width rounded glass studies extend the bar: `?nav=glass` (04, pill shape,
+translucent dark glass, fine edge highlights and 20px backdrop blur) and
+`?nav=sfumata` (05, softer corners, a vertical translucent gradient and 34px blur).
+Both stay visible while scrolling, retain readable dark solid fallbacks without
+backdrop-filter, and use the existing navigation selector and script.
+
+05 preserves the original nav's horizontal positions, logo size, typography
+and gaps. Its glass layers use the hero's measured width and corner radius, updated
+on resize. Detachment follows the first 140px of scroll with a smooth easing curve:
+vertical lift, increasing backdrop blur, fine edge reflections and a soft shadow.
+There is no horizontal scaling. Reduced motion switches directly to the docked state.
+The navigation verifier compares visible link/icon positions before, during and
+after detachment, plus glass/hero edges and radius at 320–1920px. Pass `sfumata`
+after the Playwright module and base URL to test only 05.
+
+The 05 selector now includes **Regola animazione e vetro**, with live controls for
+scroll start/distance, top gap, blur, opacity, saturation, highlights, shadow and
+motion curve. **Prova distacco** scrolls to the completed effect; **Ripristina**
+restores defaults. Non-default values are stored in `glass-*` URL parameters on
+change and retained in internal page links. Incoming range values are validated
+and constrained by the native inputs; there is no cookie or local storage.
+
+Selected defaults (2026-09-12): navigation 05, opacity 28%, blur 10px,
+shadow 50%, saturation 105%. These apply without query parameters and are restored
+by the reset button; the comparison/tuning panel remains available.

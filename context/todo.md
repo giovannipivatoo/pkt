@@ -74,6 +74,11 @@ Roughly dependency-ordered. Don't start further down until the thing above is re
 
 ## Visual preview — 2026-09-09
 
+- [x] 2026-09-12: user selected 06 (Immersiva + Profondità) as the only motion
+      treatment. Removed selector and other variants; retained reduced-motion
+      support and added CSS feedback to machine/gallery arrows. `motion.js`
+      is the explicitly requested client-script exception for these effects.
+
 - [x] Packaging Solutions hover/focus submenu and mobile category list: Verticali,
       Orizzontali, Presse. Home's second card corrected to Confezionatrici Orizzontali.
       Orizzontali and Presse remain unlinked until their category pages exist.
@@ -108,3 +113,11 @@ See `web/README.md` for preview routes and intentional limitations.
 - [x] Photo zoom requested 2026-09-10: machine and Inside PKT gallery links open a
       native dialog with Esc/button/outside-click dismissal, retaining URL, scroll
       position and focus. Small dedicated script; verified in Firefox.
+
+- [x] 2026-09-12: requested fixed-nav studies implemented (full-width bar, floating
+      compact bar, return-on-upward-scroll), with a separate navigation selector.
+      The approved 06 page motion is retained; `navigation.js` is authorized for
+      the fixed positioning/scroll behavior and preview selection.
+- [ ] Choose the final fixed navigation variant and remove its comparison selector.
+- [x] Added two requested rounded glass variants of the full-width fixed bar:
+      04 Liquid glass and 05 Vetro sfumato. Final navigation choice remains open.

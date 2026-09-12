@@ -1,0 +1,36 @@
+---
+const controls = [
+  ['start','Inizio distacco',0,400,0,10,'px'],
+  ['distance','Distanza di scroll',40,600,140,10,'px'],
+  ['gap','Distanza dal bordo superiore',0,40,10,1,'px'],
+  ['blur','Sfocatura',0,60,10,1,'px'],
+  ['opacity','Opacità del vetro',20,100,28,1,'%'],
+  ['saturation','Saturazione',50,200,105,5,'%'],
+  ['shine','Riflessi',0,200,100,5,'%'],
+  ['shadow','Ombra',0,200,50,5,'%'],
+];
+---
+<aside class="nav-preview" aria-label="Varianti navigazione" hidden>
+  <label for="nav-style">Navigazione</label>
+  <select id="nav-style">
+    <option value="barra">01 · Barra fissa</option>
+    <option value="isola">02 · Isola compatta</option>
+    <option value="risalita">03 · Ricompare risalendo</option>
+    <option value="glass">04 · Liquid glass</option>
+    <option value="sfumata" selected>05 · Vetro sfumato</option>
+  </select>
+  <details class="glass-controls" hidden>
+    <summary>Regola animazione e vetro</summary>
+    <div class="glass-controls__fields">
+      <p>Modifiche in tempo reale. Larghezza e angoli restano allineati all’hero.</p>
+      {controls.map(([name,label,min,max,value,step,unit]) => <label>
+        <span>{label}<output for={`glass-${name}`} data-unit={unit}>{value} {unit}</output></span>
+        <input id={`glass-${name}`} name={name} type="range" min={min} max={max} value={value} step={step}/>
+      </label>)}
+      <label><span>Curva del movimento</span><select name="easing"><option value="smooth">Morbida</option><option value="linear">Lineare</option><option value="out">Veloce all’inizio</option></select></label>
+      <div class="glass-controls__actions"><button type="button" data-glass-preview>Prova distacco</button><button type="button" data-glass-reset>Ripristina</button></div>
+      <p>I valori vengono conservati nell’indirizzo: copia il link per condividere la prova.</p>
+    </div>
+  </details>
+</aside>
+<script is:inline src="/scripts/navigation.js" defer></script>
